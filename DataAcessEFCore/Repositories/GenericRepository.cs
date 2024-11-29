@@ -2,6 +2,7 @@
 using DataTypes.Repositories;
 using System.Linq.Expressions;
 using DataTypes;
+using Microsoft.EntityFrameworkCore.Query.SqlExpressions;
 
 namespace DataAcessEFCore.Repositories
 {
@@ -21,7 +22,7 @@ namespace DataAcessEFCore.Repositories
             return null;
         }
 
-        public async Task<T> GetSingleAsync(Expression<Func<T, bool>> expression)
+        public async Task<T?> GetSingleAsync(Expression<Func<T, bool>> expression)
         {
             return await _context.Set<T>().AsNoTracking().FirstOrDefaultAsync(expression);
         }

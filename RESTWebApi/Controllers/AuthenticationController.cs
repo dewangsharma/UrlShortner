@@ -1,7 +1,6 @@
 ﻿using BusinessLayer.Interfaces;
 using DataTypes.Requests;
 using DataTypes.Responses;
-using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 
@@ -24,7 +23,7 @@ namespace RESTWebApi.Controllers
             var result = await _authService.LoginAsync(request.UserName, request.Password, ipAddress);
             if (result == null)
             {
-                return StatusCode((int)System.Net.HttpStatusCode.Unauthorized);
+                return StatusCode((int)HttpStatusCode.Unauthorized);
             }
             return Ok(result);
         }
@@ -35,12 +34,15 @@ namespace RESTWebApi.Controllers
 
             // var token  = await HttpContext.GetTokenAsync("access_token");
             if (request == null)
+            {
                 throw new UnauthorizedAccessException();
+            }
+
             var ipAddress = "";
             var result = await _authService.GetRefreshToken(request.Token, request.RefreshToken, ipAddress);
             if (result == null)
             {
-                return StatusCode((int)System.Net.HttpStatusCode.Unauthorized);
+                return StatusCode((int)HttpStatusCode.Unauthorized);
             }
             return Ok(result);
         }

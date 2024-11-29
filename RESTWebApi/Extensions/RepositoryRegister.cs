@@ -21,7 +21,6 @@ namespace RESTWebApi.Extensions
             builder.Services.AddScoped<IUserRepository, UserRepository>();
             builder.Services.AddScoped<IUserCredentialRepository, UserCredentialRepository>();
             builder.Services.AddScoped<IUserTokenRepository, UserTokenRepository>();
-
         }
     }
 }

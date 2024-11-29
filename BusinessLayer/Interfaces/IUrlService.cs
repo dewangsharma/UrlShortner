@@ -8,9 +8,9 @@ namespace BusinessLayer.Interfaces
     {
         Task<IEnumerable<UrlRes>> GetAllAsync(int userId = 0, CancellationToken token = default);
 
-        Task<UrlRes> GetSingleAsync(string actualUrl, CancellationToken token);
+        Task<UrlRes?> GetSingleAsync(string actualUrl, CancellationToken token);
 
-        Task<UrlRes> GetSingleByAliasAsync(string alias, CancellationToken token);
+        Task<UrlRes?> GetSingleByAliasAsync(string alias, CancellationToken token);
 
         Task<UrlRes> CreateAsync(string actualUrl, int userId, CancellationToken token);
 

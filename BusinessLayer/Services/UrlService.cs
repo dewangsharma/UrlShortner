@@ -4,6 +4,7 @@ using DataTypes.Mappers;
 using DataTypes.Repositories;
 using DataTypes.Requests;
 using DataTypes.Responses;
+using System.Collections;
 
 namespace BusinessLayer.Services
 {
@@ -18,20 +19,21 @@ namespace BusinessLayer.Services
         {
             if (userId > 0)
             {
+                var deleteme= await _urlRepository.FindAsync(x => x.Id == 1);
                 return ( await _urlRepository.FindAsync(x => x.UserId == userId)).ToDto();
             }
             
-            return (await _urlRepository.GetAllAsync(token))?.ToDto();
+            return Enumerable.Empty<UrlRes>();
         }
 
-        public async Task<UrlRes> GetSingleAsync(string actualUrl, CancellationToken token)
+        public async Task<UrlRes?> GetSingleAsync(string actualUrl, CancellationToken token)
         {
-            return (await _urlRepository.GetSingleAsync(x => x.Actual.ToLower() == actualUrl.ToLower()))?.ToDto();
+            return (await _urlRepository.GetSingleAsync(x => x.Actual.ToLower() == actualUrl.ToLower()))?.ToDto() ?? default;
         }
 
-        public async Task<UrlRes> GetSingleByAliasAsync(string alias, CancellationToken token)
+        public async Task<UrlRes?> GetSingleByAliasAsync(string alias, CancellationToken token)
         {
-            return (await _urlRepository.GetSingleAsync( x => x.Shortened.ToLower() == alias.ToLower() ) ).ToDto();
+            return (await _urlRepository.GetSingleAsync(x => x.Shortened.ToLower() == alias.ToLower()))?.ToDto() ?? default;
         }
 
         public async Task<UrlRes> CreateAsync(string actualUrl, int userId, CancellationToken token)

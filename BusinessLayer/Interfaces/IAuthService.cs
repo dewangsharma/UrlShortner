@@ -1,6 +1,4 @@
-﻿using DataTypes;
-using DataTypes.Requests;
-using DataTypes.Responses;
+﻿using DataTypes.Responses;
 
 namespace BusinessLayer.Interfaces
 {
@@ -9,6 +7,5 @@ namespace BusinessLayer.Interfaces
         (string Username,string Password) EncryptCredentials(string username, string password);
         Task<AuthenticationRes> LoginAsync(string username, string password, string ipAddress);
         Task<AuthenticationRes> GetRefreshToken(string token, string refreshToken, string ipAddress);
-
     }
 }

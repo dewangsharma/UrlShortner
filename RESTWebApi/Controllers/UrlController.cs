@@ -19,7 +19,7 @@ namespace RESTWebApi.Controllers
             _urlService = urlService;
         }
 
-        [HttpGet]
+        [HttpGet, Authorize]
         public async Task<ActionResult> GetAll(CancellationToken token)
         {
             var userId = HttpContext.GetUserId();
@@ -37,16 +37,12 @@ namespace RESTWebApi.Controllers
         [HttpGet("{url}")]
         public async Task<ActionResult> Get(string url, CancellationToken token)
         {
-            // Read/Learn more about Difference in 302 vs 307 ?
-            // return Redirect("https://www.youtube.com/watch?v=HGIdAn2h8BA&ab_channel=PatrickGod");
-            // return RedirectPreserveMethod("https://youtube.com");
-            // return RedirectPermanent("https://facebook.com");
-
             var result = await _urlService.GetSingleByAliasAsync(url, token);
             if (result is UrlRes)
             {
-                return Redirect(result.Actual);
+                return RedirectPermanent(result.Actual);
             }
+
             return NotFound();
         }
 

@@ -281,3 +281,12 @@ C:\Technical\PracticeProjects\UrlShortner\UrlShortner\RESTWebApi\obj\Debug\net8.
 C:\Technical\PracticeProjects\UrlShortner\UrlShortner\RESTWebApi\obj\Debug\net8.0\RESTWebApi.pdb
 C:\Technical\PracticeProjects\UrlShortner\UrlShortner\RESTWebApi\obj\Debug\net8.0\RESTWebApi.genruntimeconfig.cache
 C:\Technical\PracticeProjects\UrlShortner\UrlShortner\RESTWebApi\obj\Debug\net8.0\ref\RESTWebApi.dll
+C:\Technical\PracticeProjects\UrlShortner\UrlShortner\RESTWebApi\bin\Debug\net8.0\Serilog.dll
+C:\Technical\PracticeProjects\UrlShortner\UrlShortner\RESTWebApi\bin\Debug\net8.0\Serilog.AspNetCore.dll
+C:\Technical\PracticeProjects\UrlShortner\UrlShortner\RESTWebApi\bin\Debug\net8.0\Serilog.Extensions.Hosting.dll
+C:\Technical\PracticeProjects\UrlShortner\UrlShortner\RESTWebApi\bin\Debug\net8.0\Serilog.Extensions.Logging.dll
+C:\Technical\PracticeProjects\UrlShortner\UrlShortner\RESTWebApi\bin\Debug\net8.0\Serilog.Formatting.Compact.dll
+C:\Technical\PracticeProjects\UrlShortner\UrlShortner\RESTWebApi\bin\Debug\net8.0\Serilog.Settings.Configuration.dll
+C:\Technical\PracticeProjects\UrlShortner\UrlShortner\RESTWebApi\bin\Debug\net8.0\Serilog.Sinks.Console.dll
+C:\Technical\PracticeProjects\UrlShortner\UrlShortner\RESTWebApi\bin\Debug\net8.0\Serilog.Sinks.Debug.dll
+C:\Technical\PracticeProjects\UrlShortner\UrlShortner\RESTWebApi\bin\Debug\net8.0\Serilog.Sinks.File.dll

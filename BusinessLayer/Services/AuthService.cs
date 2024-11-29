@@ -1,22 +1,21 @@
 ﻿using BusinessLayer.Interfaces;
 using DataTypes;
+using DataTypes.Options;
 using DataTypes.Repositories;
 using DataTypes.Responses;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace BusinessLayer.Services
 {
     public class AuthService : IAuthService
     {
-        private readonly string _issuer;
-        private readonly string _audience;
-        private readonly string _key;
         private readonly string _usernameSalt;
         private readonly string _passwordSalt;
         private readonly IUserCredentialRepository _userCredentialRepository;
@@ -26,18 +25,23 @@ namespace BusinessLayer.Services
         const int tokenExpiresMinutes = 15;
         HashAlgorithmName hashAlgorithm = HashAlgorithmName.SHA512;
 
-        // IConfiguration
-        public AuthService(IConfiguration config, 
+        private readonly ILogger<AuthService> _logger;
+
+        private readonly JwtOption _jwtOption;
+
+        public AuthService(IConfiguration config,
             IUserCredentialRepository userCredentialRepository,
-            IUserTokenRepository userTokenRepository)
+            IUserTokenRepository userTokenRepository,
+            IOptions<JwtOption> option,
+            ILogger<AuthService> logger)
         {
-            _audience = config.GetSection("JWT:Audience").Value ?? throw new KeyNotFoundException("JWT:Audience");
-            _issuer = config.GetSection("JWT:Issuer").Value ?? throw new KeyNotFoundException("JWT:Issuer");
-            _key = config.GetSection("JWT:Key").Value ?? throw new KeyNotFoundException("JWT:Key");
             _usernameSalt = config.GetSection("SaltKey:Username").Value ?? throw new KeyNotFoundException("SaltKey:Username");
             _passwordSalt = config.GetSection("SaltKey:Password").Value ?? throw new KeyNotFoundException("SaltKey:Password");
             _userCredentialRepository = userCredentialRepository;
             _userTokenRepository = userTokenRepository;
+            _logger = logger;
+
+            _jwtOption = option.Value;
         }
 
         public (string Username, string Password) EncryptCredentials(string username, string password)
@@ -60,7 +64,7 @@ namespace BusinessLayer.Services
                 var refreshTokenExpiration = DateTime.UtcNow.AddDays(7);
 
                 await _userTokenRepository.AddAsync(new UserToken { Token = token, IPAddress = ipAddress, RefreshToken = refreshToken, UserId = user.Id, RefreshTokenExpired = refreshTokenExpiration });
-                
+
                 return new AuthenticationRes()
                 {
                     TokenType = "Bearer",
@@ -113,14 +117,14 @@ namespace BusinessLayer.Services
                 new Claim(ClaimTypes.Email, user.Email)
             };
 
-            var key = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(_key));
+            var key = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(_jwtOption.SecretKey));
             var signInCredentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256Signature);
             var jwtToken = new JwtSecurityToken(
                 claims: claims,
                 expires: expiration,
                 signingCredentials: signInCredentials,
-                issuer: _issuer,
-                audience: _audience
+                issuer: _jwtOption.Issuer,
+                audience: _jwtOption.Audience
                 );
 
             return new JwtSecurityTokenHandler().WriteToken(jwtToken);

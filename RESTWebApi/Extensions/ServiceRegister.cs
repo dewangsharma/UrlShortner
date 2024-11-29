@@ -1,7 +1,5 @@
 ﻿using BusinessLayer.Interfaces;
 using BusinessLayer.Services;
-using DataAcessEFCore.Repositories;
-using DataTypes.Repositories;
 
 namespace RESTWebApi.Extensions
 {

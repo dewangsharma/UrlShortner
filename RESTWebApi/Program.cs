@@ -1,5 +1,7 @@
+using Microsoft.OpenApi.Models;
 using RESTWebApi.Exceptions;
 using RESTWebApi.Extensions;
+using RESTWebApi.Options;
 
 namespace RESTWebApi
 {
@@ -12,8 +14,11 @@ namespace RESTWebApi
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
-            builder.AuthWithJWTBearer();
+
             builder.AddServices();
+            builder.AddLogging();
+            builder.Services.ConfigureOptions<JwtOptionSetup>();
+            builder.AuthWithJWTBearer();
             builder.AddRepositories();
             builder.Services.AddCors(c =>
             {
