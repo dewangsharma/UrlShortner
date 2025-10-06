@@ -1,0 +1,16 @@
+C:\Technical\PracticeProjects\UrlShortner\UrlShortner\UrlShortner.Application\obj\Debug\net8.0\UrlShortner.Application.csproj.AssemblyReference.cache
+C:\Technical\PracticeProjects\UrlShortner\UrlShortner\UrlShortner.Application\obj\Debug\net8.0\UrlShortner.Application.GeneratedMSBuildEditorConfig.editorconfig
+C:\Technical\PracticeProjects\UrlShortner\UrlShortner\UrlShortner.Application\obj\Debug\net8.0\UrlShortner.Application.AssemblyInfoInputs.cache
+C:\Technical\PracticeProjects\UrlShortner\UrlShortner\UrlShortner.Application\obj\Debug\net8.0\UrlShortner.Application.AssemblyInfo.cs
+C:\Technical\PracticeProjects\UrlShortner\UrlShortner\UrlShortner.Application\obj\Debug\net8.0\UrlShortner.Application.csproj.CoreCompileInputs.cache
+C:\Technical\PracticeProjects\UrlShortner\UrlShortner\UrlShortner.Application\obj\Debug\net8.0\UrlShortner.Application.sourcelink.json
+C:\Technical\PracticeProjects\UrlShortner\UrlShortner\UrlShortner.Application\bin\Debug\net8.0\UrlShortner.Application.deps.json
+C:\Technical\PracticeProjects\UrlShortner\UrlShortner\UrlShortner.Application\bin\Debug\net8.0\UrlShortner.Application.dll
+C:\Technical\PracticeProjects\UrlShortner\UrlShortner\UrlShortner.Application\bin\Debug\net8.0\UrlShortner.Application.pdb
+C:\Technical\PracticeProjects\UrlShortner\UrlShortner\UrlShortner.Application\bin\Debug\net8.0\UrlShortner.Domain.dll
+C:\Technical\PracticeProjects\UrlShortner\UrlShortner\UrlShortner.Application\bin\Debug\net8.0\UrlShortner.Domain.pdb
+C:\Technical\PracticeProjects\UrlShortner\UrlShortner\UrlShortner.Application\obj\Debug\net8.0\UrlShort.2D0F6AAD.Up2Date
+C:\Technical\PracticeProjects\UrlShortner\UrlShortner\UrlShortner.Application\obj\Debug\net8.0\UrlShortner.Application.dll
+C:\Technical\PracticeProjects\UrlShortner\UrlShortner\UrlShortner.Application\obj\Debug\net8.0\refint\UrlShortner.Application.dll
+C:\Technical\PracticeProjects\UrlShortner\UrlShortner\UrlShortner.Application\obj\Debug\net8.0\UrlShortner.Application.pdb
+C:\Technical\PracticeProjects\UrlShortner\UrlShortner\UrlShortner.Application\obj\Debug\net8.0\ref\UrlShortner.Application.dll
