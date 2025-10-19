@@ -1,11 +1,11 @@
-﻿using DataTypes.Responses;
+﻿using UrlShortner.Application.Models.Authentications;
 
-namespace BusinessLayer.Interfaces
+namespace UrlShortner.Application.Interfaces
 {
     public interface IAuthService
     {
-        (string Username,string Password) EncryptCredentials(string username, string password);
-        Task<AuthenticationRes> LoginAsync(string username, string password, string ipAddress);
-        Task<AuthenticationRes> GetRefreshToken(string token, string refreshToken, string ipAddress);
+        (string Email,string Password) EncryptCredentials(string username, string password);
+        Task<LoginResponseDto> LoginAsync(LoginDto loginDto);
+        Task<LoginResponseDto> GetRefreshToken(RefreshTokenDto refreshTokenDto);
     }
 }

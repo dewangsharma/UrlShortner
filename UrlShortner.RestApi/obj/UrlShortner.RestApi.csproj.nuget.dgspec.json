@@ -182,6 +182,9 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
+              "C:\\Technical\\PracticeProjects\\UrlShortner\\UrlShortner\\UrlShortner.Application\\UrlShortner.Application.csproj": {
+                "projectPath": "C:\\Technical\\PracticeProjects\\UrlShortner\\UrlShortner\\UrlShortner.Application\\UrlShortner.Application.csproj"
+              },
               "C:\\Technical\\PracticeProjects\\UrlShortner\\UrlShortner\\UrlShortner.Domain\\UrlShortner.Domain.csproj": {
                 "projectPath": "C:\\Technical\\PracticeProjects\\UrlShortner\\UrlShortner\\UrlShortner.Domain\\UrlShortner.Domain.csproj"
               }

@@ -1,9 +1,4 @@
-﻿using BusinessLayer.Interfaces;
-using DataTypes;
-using DataTypes.Options;
-using DataTypes.Repositories;
-using DataTypes.Responses;
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
@@ -11,8 +6,13 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
+using UrlShortner.Application.Interfaces;
+using UrlShortner.Application.Models.Authentications;
+using UrlShortner.Application.Repositories;
+using UrlShortner.Domain;
+using UrlShortner.Domain.Options;
 
-namespace BusinessLayer.Services
+namespace UrlShortner.Application.Services
 {
     public class AuthService : IAuthService
     {
@@ -44,15 +44,15 @@ namespace BusinessLayer.Services
             _jwtOption = option.Value;
         }
 
-        public (string Username, string Password) EncryptCredentials(string username, string password)
+        public (string Email, string Password) EncryptCredentials(string username, string password)
         {
             return (GetHashedValue(username, _usernameSalt), GetHashedValue(password, _passwordSalt));
         }
 
-        public async Task<AuthenticationRes> LoginAsync(string username, string password, string ipAddress)
+        public async Task<LoginResponseDto> LoginAsync(LoginDto loginDto)
         {
-            var hashedUsername = GetHashedValue(username, _usernameSalt);
-            var hashedPassword = GetHashedValue(password, _passwordSalt);
+            var hashedUsername = GetHashedValue(loginDto.UserName, _usernameSalt);
+            var hashedPassword = GetHashedValue(loginDto.Password, _passwordSalt);
             var userCred = await _userCredentialRepository.FindAsync(x => x.Username == hashedUsername && x.Password == hashedPassword);
 
             if (userCred != null)
@@ -63,9 +63,9 @@ namespace BusinessLayer.Services
                 var refreshToken = GenerateRefreshToken();
                 var refreshTokenExpiration = DateTime.UtcNow.AddDays(7);
 
-                await _userTokenRepository.AddAsync(new UserToken { Token = token, IPAddress = ipAddress, RefreshToken = refreshToken, UserId = user.Id, RefreshTokenExpired = refreshTokenExpiration });
+                await _userTokenRepository.AddAsync(new UserToken { Token = token, IPAddress = loginDto.IPAddress, RefreshToken = refreshToken, UserId = user.Id, RefreshTokenExpired = refreshTokenExpiration });
 
-                return new AuthenticationRes()
+                return new LoginResponseDto()
                 {
                     TokenType = "Bearer",
                     Token = token,
@@ -73,12 +73,12 @@ namespace BusinessLayer.Services
                     RefreshToken = refreshToken,
                 };
             }
-            return await Task.FromResult<AuthenticationRes>(null);
+            return await Task.FromResult<LoginResponseDto>(null);
         }
 
-        public async Task<AuthenticationRes> GetRefreshToken(string token, string refreshToken, string ipAddress)
+        public async Task<LoginResponseDto> GetRefreshToken(RefreshTokenDto refreshTokenDto)
         {
-            var userToken = await _userTokenRepository.GetUserTokenAsync(x => x.Token == token && x.RefreshToken == refreshToken && x.IPAddress == ipAddress);
+            var userToken = await _userTokenRepository.GetUserTokenAsync(x => x.Token == refreshTokenDto.Token && x.RefreshToken == refreshTokenDto.RefreshToken && x.IPAddress == refreshTokenDto.IPAddress);
 
             if (userToken is not null)
             {
@@ -94,7 +94,7 @@ namespace BusinessLayer.Services
 
                 await _userTokenRepository.UpdateAsync(userToken);
 
-                return new AuthenticationRes()
+                return new LoginResponseDto()
                 {
                     TokenType = "Bearer",
                     Token = newToken,
@@ -103,7 +103,7 @@ namespace BusinessLayer.Services
                 };
             }
 
-            return await Task.FromResult<AuthenticationRes>(null);
+            return await Task.FromResult<LoginResponseDto>(null);
         }
 
         private string GenerateToken(User user, DateTime expiration)

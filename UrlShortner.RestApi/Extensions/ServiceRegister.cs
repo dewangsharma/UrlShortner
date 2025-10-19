@@ -1,5 +1,5 @@
-﻿using BusinessLayer.Interfaces;
-using BusinessLayer.Services;
+﻿using UrlShortner.Application.Interfaces;
+using UrlShortner.Application.Services;
 
 namespace RESTWebApi.Extensions
 {

@@ -1,6 +1,7 @@
 using RESTWebApi.Exceptions;
 using RESTWebApi.Extensions;
 using RESTWebApi.Options;
+using UrlShortner.Infrastructure;
 
 namespace RESTWebApi
 {
@@ -18,7 +19,10 @@ namespace RESTWebApi
             builder.AddLogging();
             builder.Services.ConfigureOptions<JwtOptionSetup>();
             builder.AuthWithJWTBearer();
-            builder.AddRepositories();
+            // builder.AddRepositories();
+
+            builder.Services.AddInfrastructure(builder.Configuration.GetSection("ConnectionStrings:TinyUrlDb").Value);
+
             builder.Services.AddCors(c =>
             {
                 c.AddPolicy("AllowOrigin",

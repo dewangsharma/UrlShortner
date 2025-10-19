@@ -5,8 +5,8 @@ C:\Technical\PracticeProjects\UrlShortner\UrlShortner\Tests\UrlShortner.Applicat
 C:\Technical\PracticeProjects\UrlShortner\UrlShortner\Tests\UrlShortner.Application.Tests\obj\Debug\net8.0\UrlShortner.Application.Tests.AssemblyInfo.cs
 C:\Technical\PracticeProjects\UrlShortner\UrlShortner\Tests\UrlShortner.Application.Tests\obj\Debug\net8.0\UrlShortner.Application.Tests.csproj.CoreCompileInputs.cache
 C:\Technical\PracticeProjects\UrlShortner\UrlShortner\Tests\UrlShortner.Application.Tests\obj\Debug\net8.0\UrlShortner.Application.Tests.sourcelink.json
-C:\Technical\PracticeProjects\UrlShortner\UrlShortner\Tests\UrlShortner.Application.Tests\bin\Debug\net8.0\testhost.exe
 C:\Technical\PracticeProjects\UrlShortner\UrlShortner\Tests\UrlShortner.Application.Tests\bin\Debug\net8.0\testhost.dll
+C:\Technical\PracticeProjects\UrlShortner\UrlShortner\Tests\UrlShortner.Application.Tests\bin\Debug\net8.0\testhost.exe
 C:\Technical\PracticeProjects\UrlShortner\UrlShortner\Tests\UrlShortner.Application.Tests\bin\Debug\net8.0\xunit.runner.visualstudio.dotnetcore.testadapter.dll
 C:\Technical\PracticeProjects\UrlShortner\UrlShortner\Tests\UrlShortner.Application.Tests\bin\Debug\net8.0\xunit.runner.reporters.netcoreapp10.dll
 C:\Technical\PracticeProjects\UrlShortner\UrlShortner\Tests\UrlShortner.Application.Tests\bin\Debug\net8.0\xunit.runner.utility.netcoreapp10.dll

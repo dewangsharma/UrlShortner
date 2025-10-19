@@ -2,7 +2,9 @@ C:\Technical\PracticeProjects\UrlShortner\UrlShortner\UrlShortner.Infrastructure
 C:\Technical\PracticeProjects\UrlShortner\UrlShortner\UrlShortner.Infrastructure\bin\Debug\net8.0\UrlShortner.Infrastructure.runtimeconfig.json
 C:\Technical\PracticeProjects\UrlShortner\UrlShortner\UrlShortner.Infrastructure\bin\Debug\net8.0\UrlShortner.Infrastructure.dll
 C:\Technical\PracticeProjects\UrlShortner\UrlShortner\UrlShortner.Infrastructure\bin\Debug\net8.0\UrlShortner.Infrastructure.pdb
+C:\Technical\PracticeProjects\UrlShortner\UrlShortner\UrlShortner.Infrastructure\bin\Debug\net8.0\UrlShortner.Application.dll
 C:\Technical\PracticeProjects\UrlShortner\UrlShortner\UrlShortner.Infrastructure\bin\Debug\net8.0\UrlShortner.Domain.dll
+C:\Technical\PracticeProjects\UrlShortner\UrlShortner\UrlShortner.Infrastructure\bin\Debug\net8.0\UrlShortner.Application.pdb
 C:\Technical\PracticeProjects\UrlShortner\UrlShortner\UrlShortner.Infrastructure\bin\Debug\net8.0\UrlShortner.Domain.pdb
 C:\Technical\PracticeProjects\UrlShortner\UrlShortner\UrlShortner.Infrastructure\obj\Debug\net8.0\UrlShortner.Infrastructure.csproj.AssemblyReference.cache
 C:\Technical\PracticeProjects\UrlShortner\UrlShortner\UrlShortner.Infrastructure\obj\Debug\net8.0\UrlShortner.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig

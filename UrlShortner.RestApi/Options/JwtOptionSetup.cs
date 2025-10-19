@@ -1,5 +1,5 @@
-﻿using DataTypes.Options;
-using Microsoft.Extensions.Options;
+﻿using Microsoft.Extensions.Options;
+using UrlShortner.Domain.Options;
 
 namespace RESTWebApi.Options
 {

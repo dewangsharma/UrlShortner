@@ -1,6 +1,7 @@
-﻿using BusinessLayer.Interfaces;
-using DataTypes.Requests;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using UrlShortner.Application.Interfaces;
+using UrlShortner.RestApi.Mappers;
+using UrlShortner.RestApi.Models.Users;
 
 namespace RESTWebApi.Controllers
 {
@@ -27,16 +28,21 @@ namespace RESTWebApi.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> Post([FromBody] UserRegisterReq reqData)
+        public async Task<ActionResult> Post([FromBody] UserCreateRequest userCreateReq)
         {
             var ipAddress = "";
-            return Ok(await _userService.RegisterAsync(reqData, ipAddress));
+            var requestDto = userCreateReq.ToDto(ipAddress);
+            var createdUser = await _userService.CreateAsync(requestDto);
+
+            return Created($"api/users/{createdUser}", createdUser.ToResponse());
         }
 
         [HttpPut("{id}")]
-        public async Task<ActionResult> Put(int id, [FromForm] UserRegisterReq reqData)
+        public async Task<ActionResult> Put(int id, [FromForm] UserUpdateRequest reqData)
         {
-            return Ok(await _userService.UpdateAsync(reqData, id));
+            var ipAddress = "";
+            var userUpdateDto = reqData.ToDto(ipAddress);
+            return Ok(await _userService.UpdateAsync(userUpdateDto, id));
         }
 
         [HttpDelete("{id}")]

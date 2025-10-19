@@ -14,17 +14,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/AuthenticationReq"
+                "$ref": "#/components/schemas/LoginRequest"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/AuthenticationReq"
+                "$ref": "#/components/schemas/LoginRequest"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/AuthenticationReq"
+                "$ref": "#/components/schemas/LoginRequest"
               }
             }
           }
@@ -35,17 +35,17 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/AuthenticationRes"
+                  "$ref": "#/components/schemas/LoginResponse"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/AuthenticationRes"
+                  "$ref": "#/components/schemas/LoginResponse"
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/AuthenticationRes"
+                  "$ref": "#/components/schemas/LoginResponse"
                 }
               }
             }
@@ -62,17 +62,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/RefreshTokenReq"
+                "$ref": "#/components/schemas/RefreshTokenRequest"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/RefreshTokenReq"
+                "$ref": "#/components/schemas/RefreshTokenRequest"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/RefreshTokenReq"
+                "$ref": "#/components/schemas/RefreshTokenRequest"
               }
             }
           }
@@ -83,17 +83,17 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/AuthenticationRes"
+                  "$ref": "#/components/schemas/LoginResponse"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/AuthenticationRes"
+                  "$ref": "#/components/schemas/LoginResponse"
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/AuthenticationRes"
+                  "$ref": "#/components/schemas/LoginResponse"
                 }
               }
             }
@@ -120,17 +120,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/UrlCreateReq"
+                "$ref": "#/components/schemas/UrlCreateRequest"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/UrlCreateReq"
+                "$ref": "#/components/schemas/UrlCreateRequest"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/UrlCreateReq"
+                "$ref": "#/components/schemas/UrlCreateRequest"
               }
             }
           }
@@ -149,87 +149,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/UrlUpdateReq"
+                "$ref": "#/components/schemas/UrlUpdateRequest"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/UrlUpdateReq"
+                "$ref": "#/components/schemas/UrlUpdateRequest"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/UrlUpdateReq"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Success"
-          }
-        }
-      }
-    },
-    "/Url": {
-      "get": {
-        "tags": [
-          "Url"
-        ],
-        "responses": {
-          "200": {
-            "description": "Success"
-          }
-        }
-      },
-      "post": {
-        "tags": [
-          "Url"
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/UrlCreateReq"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/UrlCreateReq"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/UrlCreateReq"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Success"
-          }
-        }
-      },
-      "put": {
-        "tags": [
-          "Url"
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/UrlUpdateReq"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/UrlUpdateReq"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/UrlUpdateReq"
+                "$ref": "#/components/schemas/UrlUpdateRequest"
               }
             }
           }
@@ -242,28 +172,6 @@
       }
     },
     "/api/Url/{url}": {
-      "get": {
-        "tags": [
-          "Url"
-        ],
-        "parameters": [
-          {
-            "name": "url",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success"
-          }
-        }
-      }
-    },
-    "/Url/{url}": {
       "get": {
         "tags": [
           "Url"
@@ -330,17 +238,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/UserRegisterReq"
+                "$ref": "#/components/schemas/UserCreateRequest"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/UserRegisterReq"
+                "$ref": "#/components/schemas/UserCreateRequest"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/UserRegisterReq"
+                "$ref": "#/components/schemas/UserCreateRequest"
               }
             }
           }
@@ -457,7 +365,7 @@
   },
   "components": {
     "schemas": {
-      "AuthenticationReq": {
+      "LoginRequest": {
         "type": "object",
         "properties": {
           "userName": {
@@ -471,7 +379,7 @@
         },
         "additionalProperties": false
       },
-      "AuthenticationRes": {
+      "LoginResponse": {
         "type": "object",
         "properties": {
           "tokenType": {
@@ -493,7 +401,7 @@
         },
         "additionalProperties": false
       },
-      "RefreshTokenReq": {
+      "RefreshTokenRequest": {
         "type": "object",
         "properties": {
           "token": {
@@ -507,28 +415,25 @@
         },
         "additionalProperties": false
       },
-      "UrlCreateReq": {
+      "UrlCreateRequest": {
         "type": "object",
         "properties": {
           "actual": {
-            "type": "string",
-            "nullable": true
-          },
-          "shortened": {
             "type": "string",
             "nullable": true
           }
         },
         "additionalProperties": false
       },
-      "UrlStatus": {
+      "UrlStatusRequest": {
         "enum": [
+          0,
           1
         ],
         "type": "integer",
         "format": "int32"
       },
-      "UrlUpdateReq": {
+      "UrlUpdateRequest": {
         "type": "object",
         "properties": {
           "id": {
@@ -536,12 +441,12 @@
             "format": "int32"
           },
           "status": {
-            "$ref": "#/components/schemas/UrlStatus"
+            "$ref": "#/components/schemas/UrlStatusRequest"
           }
         },
         "additionalProperties": false
       },
-      "UserRegisterReq": {
+      "UserCreateRequest": {
         "type": "object",
         "properties": {
           "firstName": {

@@ -1,4 +1,4 @@
-﻿namespace DataTypes
+﻿namespace UrlShortner.Domain
 {
     public record class Url: DateTimeStamp
     {
@@ -12,7 +12,7 @@
 
     public enum UrlStatus 
     {
-        Inactive = 1,
+        Inactive = 0,
         Active = 1
     }
 }

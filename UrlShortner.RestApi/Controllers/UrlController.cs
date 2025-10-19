@@ -1,14 +1,14 @@
-﻿using BusinessLayer.Interfaces;
-using DataTypes.Requests;
-using DataTypes.Responses;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using RESTWebApi.Extensions;
+using UrlShortner.Application.Interfaces;
+using UrlShortner.Application.Models.Urls;
+using UrlShortner.RestApi.Mappers;
+using UrlShortner.RestApi.Models.Urls;
 
 namespace RESTWebApi.Controllers
 {
     [Route("api/[controller]")]
-    [Route("/[controller]")]
     [ApiController]
     [Authorize]
     public class UrlController : ControllerBase
@@ -23,7 +23,8 @@ namespace RESTWebApi.Controllers
         public async Task<ActionResult> GetAll(CancellationToken token)
         {
             var userId = HttpContext.GetUserId();
-            return Ok(await _urlService.GetAllAsync(HttpContext.GetUserId(), token));
+            var urlDtos = await _urlService.GetAllAsync(HttpContext.GetUserId(), token);
+            return Ok(urlDtos.ToResponse());
 
 
             //var url = new UrlRes { ActualUrl = "https://www.youtube.com/watch?v=HGIdAn2h8BA&ab_channel=PatrickGod", ShortenUrl = "" };
@@ -37,27 +38,30 @@ namespace RESTWebApi.Controllers
         [HttpGet("{url}")]
         public async Task<ActionResult> Get(string url, CancellationToken token)
         {
-            var result = await _urlService.GetSingleByAliasAsync(url, token);
-            if (result is UrlRes)
+            var urlDto = await _urlService.GetSingleByAliasAsync(url, token);
+            if (urlDto is UrlDto)
             {
-                return RedirectPermanent(result.Actual);
+                return RedirectPermanent(urlDto.Actual);
             }
 
             return NotFound();
         }
 
         [HttpPost]
-        public async Task<ActionResult> Create([FromBody] UrlCreateReq request, CancellationToken token)
+        public async Task<ActionResult> Create([FromBody] UrlCreateRequest request, CancellationToken token)
         {
             var userId = HttpContext.GetUserId();
-            return Ok(await _urlService.CreateAsync(request.Actual, userId, token));
+            var urlCreateDto = request.ToDto(userId);
+            var urlDto = await _urlService.CreateAsync(urlCreateDto, token);
+            return Ok(urlDto.ToResponse());
         }
 
         [HttpPut]
-        public async Task<ActionResult> Update([FromBody] UrlUpdateReq request, CancellationToken token)
+        public async Task<ActionResult> Update([FromBody] UrlUpdateRequest request, CancellationToken token)
         {
             var userId = HttpContext.GetUserId();
-            return Ok(await _urlService.UpdateAsync(request, token));
+            var urlUpdateDto = request.ToDto(userId);
+            return Ok(await _urlService.UpdateAsync(urlUpdateDto, token));
         }
     }
 }

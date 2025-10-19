@@ -1480,6 +1480,7 @@
           "Microsoft.AspNetCore.Authentication.JwtBearer": "8.0.2",
           "Microsoft.EntityFrameworkCore": "8.0.2",
           "Microsoft.EntityFrameworkCore.Sqlite": "8.0.2",
+          "UrlShortner.Application": "1.0.0",
           "UrlShortner.Domain": "1.0.0"
         },
         "compile": {

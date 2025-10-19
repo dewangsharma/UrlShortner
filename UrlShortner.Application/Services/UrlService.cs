@@ -1,11 +1,9 @@
-﻿using BusinessLayer.Interfaces;
-using DataTypes;
-using DataTypes.Mappers;
-using DataTypes.Repositories;
-using DataTypes.Requests;
-using DataTypes.Responses;
+﻿using UrlShortner.Application.Repositories;
+using UrlShortner.Application.Interfaces;
+using UrlShortner.Application.Mappers;
+using UrlShortner.Application.Models.Urls;
 
-namespace BusinessLayer.Services
+namespace UrlShortner.Application.Services
 {
     public class UrlService : IUrlService
     {
@@ -15,51 +13,52 @@ namespace BusinessLayer.Services
             _urlRepository = urlRepository;
         }
 
-        public async Task<IEnumerable<UrlRes>> GetAllAsync(int userId, CancellationToken token)
+        public async Task<IEnumerable<UrlDto>> GetAllAsync(int userId, CancellationToken token)
         {
             if (userId > 0)
             {
                 var result = await _urlRepository.FindAsync(x => x.UserId == userId);
-                return result == null ? Enumerable.Empty<UrlRes>() :  result.ToDto();
+                return result == null ? Enumerable.Empty<UrlDto>() :  result.ToDto();
             }
             
-            return Enumerable.Empty<UrlRes>();
+            return Enumerable.Empty<UrlDto>();
         }
 
-        public async Task<UrlRes?> GetSingleAsync(string actualUrl, CancellationToken token)
+        public async Task<UrlDto?> GetSingleAsync(string actualUrl, CancellationToken token)
         {
             return (await _urlRepository.GetSingleAsync(x => x.Actual.ToLower() == actualUrl.ToLower()))?.ToDto() ?? default;
         }
 
-        public async Task<UrlRes?> GetSingleByAliasAsync(string alias, CancellationToken token)
+        public async Task<UrlDto?> GetSingleByAliasAsync(string alias, CancellationToken token)
         {
             return (await _urlRepository.GetSingleAsync(x => x.Shortened.ToLower() == alias.ToLower()))?.ToDto() ?? default;
         }
 
-        public async Task<UrlRes> CreateAsync(string actualUrl, int userId, CancellationToken token)
+        public async Task<UrlDto> CreateAsync(UrlCreateDto urlCreate, CancellationToken token)
         {
-            var url = await GetSingleAsync(actualUrl, token);
+            var url = await GetSingleAsync(urlCreate.Actual, token);
 
             // validate the existing actualurl 
             if (url is null)
             {
                 var shortnedUrl = await GetUrlShortner();
-                var result = await _urlRepository.AddAsync(new Url { UserId = userId, Status = UrlStatus.Active, Actual = actualUrl, Shortened = shortnedUrl });
+                var result = await _urlRepository.AddAsync(urlCreate.ToDomain(shortnedUrl));
+                // var result = await _urlRepository.AddAsync(new Url { UserId = urlCreate.UserId, Status = UrlStatus.Active, Actual = urlCreate.Actual, Shortened = shortnedUrl });
                 return result.ToDto();
             }
 
             throw new Exception($"Url {url.Actual} already exist with Shortned url {url.Shortened}");
         }
 
-        public async Task<UrlRes> UpdateAsync(UrlUpdateReq request, CancellationToken token)
+        public async Task<UrlDto> UpdateAsync(UrlUpdateDto urlUpdateDto, CancellationToken token)
         {
-            var url = await _urlRepository.GetByIdAsync(request.Id);
+            var url = await _urlRepository.GetByIdAsync(urlUpdateDto.Id);
             if (url is null)
             {
-                throw new Exception($"Existing Url not found for the Id: {request.Id}");
+                throw new Exception($"Existing Url not found for the Id: {urlUpdateDto.Id}");
             }
 
-            url.Status = request.Status;
+            url.Status = urlUpdateDto.Status.ToDomain();
 
             var updatedUrl =  await _urlRepository.UpdateAsync(url);
             if (updatedUrl is null)

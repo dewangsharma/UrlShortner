@@ -1,8 +1,8 @@
-﻿using BusinessLayer.Interfaces;
-using DataTypes.Requests;
-using DataTypes.Responses;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using System.Net;
+using UrlShortner.Application.Interfaces;
+using UrlShortner.RestApi.Mappers;
+using UrlShortner.RestApi.Models.Authentications;
 
 namespace RESTWebApi.Controllers
 {
@@ -17,10 +17,11 @@ namespace RESTWebApi.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<AuthenticationRes>> Login([FromBody] AuthenticationReq request)
+        public async Task<ActionResult<LoginResponse>> Login([FromBody] LoginRequest request)
         {
             var ipAddress = "";
-            var result = await _authService.LoginAsync(request.UserName, request.Password, ipAddress);
+            var loginReqDto = request.ToDto(ipAddress);
+            var result = await _authService.LoginAsync(loginReqDto);
             if (result == null)
             {
                 return StatusCode((int)HttpStatusCode.Unauthorized);
@@ -29,9 +30,8 @@ namespace RESTWebApi.Controllers
         }
 
         [HttpPost("token")]
-        public async Task<ActionResult<AuthenticationRes>> Refresh([FromBody] RefreshTokenReq request)
+        public async Task<ActionResult<LoginResponse>> Refresh([FromBody] RefreshTokenRequest request)
         {
-
             // var token  = await HttpContext.GetTokenAsync("access_token");
             if (request == null)
             {
@@ -39,7 +39,8 @@ namespace RESTWebApi.Controllers
             }
 
             var ipAddress = "";
-            var result = await _authService.GetRefreshToken(request.Token, request.RefreshToken, ipAddress);
+            var refreshTokenDto = request.ToDto(ipAddress);
+            var result = await _authService.GetRefreshToken(refreshTokenDto);
             if (result == null)
             {
                 return StatusCode((int)HttpStatusCode.Unauthorized);

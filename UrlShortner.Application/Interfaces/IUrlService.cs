@@ -1,19 +1,18 @@
-﻿using DataTypes.Requests;
-using DataTypes.Responses;
+﻿using UrlShortner.Application.Models.Urls;
 
-namespace BusinessLayer.Interfaces
+namespace UrlShortner.Application.Interfaces
 {
     public interface IUrlService
     {
-        Task<IEnumerable<UrlRes>> GetAllAsync(int userId = 0, CancellationToken token = default);
+        Task<IEnumerable<UrlDto>> GetAllAsync(int userId = 0, CancellationToken token = default);
 
-        Task<UrlRes?> GetSingleAsync(string actualUrl, CancellationToken token);
+        Task<UrlDto?> GetSingleAsync(string actualUrl, CancellationToken token);
 
-        Task<UrlRes?> GetSingleByAliasAsync(string alias, CancellationToken token);
+        Task<UrlDto?> GetSingleByAliasAsync(string alias, CancellationToken token);
 
-        Task<UrlRes> CreateAsync(string actualUrl, int userId, CancellationToken token);
+        Task<UrlDto> CreateAsync(UrlCreateDto urlCreate, CancellationToken token);
 
-        Task<UrlRes> UpdateAsync(UrlUpdateReq request, CancellationToken token);
+        Task<UrlDto> UpdateAsync(UrlUpdateDto urlUpdate, CancellationToken token);
 
     }
 }

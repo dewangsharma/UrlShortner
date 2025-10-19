@@ -1,10 +1,11 @@
-﻿using BusinessLayer.Services;
-using DataTypes;
-using DataTypes.Mappers;
-using DataTypes.Repositories;
-using Moq;
+﻿using Moq;
 using System.Linq.Expressions;
+using UrlShortner.Application.Mappers;
+using UrlShortner.Application.Models.Urls;
+using UrlShortner.Application.Repositories;
+using UrlShortner.Application.Services;
 using UrlShortner.Application.Tests.ClassFixtures;
+using UrlShortner.Domain;
 
 namespace UrlShortner.Application.Tests.Services
 {
@@ -154,7 +155,8 @@ namespace UrlShortner.Application.Tests.Services
             _urlRepository.Setup(repo => repo.GetSingleAsync(x => x.Actual == actualUrl)).ReturnsAsync(default(Url));
             _urlRepository.Setup(repo => repo.AddAsync(It.IsAny<Url>())).ReturnsAsync(url);
 
-            var response = await _urlService.CreateAsync(actualUrl, userId, new CancellationToken());
+            var urlCreateDto = new UrlCreateDto { Actual = actualUrl, UserId = userId };
+            var response = await _urlService.CreateAsync(urlCreateDto, new CancellationToken());
 
             Assert.Equal(actualUrl, response.Actual);
         }
@@ -177,7 +179,8 @@ namespace UrlShortner.Application.Tests.Services
             _urlRepository.Setup(repo => repo.GetSingleAsync(x => x.Actual.ToLower() == actualUrl.ToLower())).ReturnsAsync(url);
             _urlRepository.Setup(repo => repo.AddAsync(It.IsAny<Url>())).ReturnsAsync(url);
 
-            var ex = await Assert.ThrowsAsync<Exception>(async () => await _urlService.CreateAsync(actualUrl, userId, new CancellationToken()));
+            var urlCreateDto = new UrlCreateDto { Actual = actualUrl, UserId = userId };
+            var ex = await Assert.ThrowsAsync<Exception>(async () => await _urlService.CreateAsync(urlCreateDto, new CancellationToken()));
 
             Assert.Equal($"Url {url.Actual} already exist with Shortned url {url.Shortened}", ex.Message);
         }

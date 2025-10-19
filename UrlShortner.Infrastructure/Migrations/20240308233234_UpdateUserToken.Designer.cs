@@ -20,7 +20,7 @@ namespace DataAcessEFCore.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.2");
 
-            modelBuilder.Entity("DataTypes.Url", b =>
+            modelBuilder.Entity("UrlShortner.Domain.Url", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -53,7 +53,7 @@ namespace DataAcessEFCore.Migrations
                     b.ToTable("Urls");
                 });
 
-            modelBuilder.Entity("DataTypes.User", b =>
+            modelBuilder.Entity("UrlShortner.Domain.User", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -82,7 +82,7 @@ namespace DataAcessEFCore.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("DataTypes.UserCredential", b =>
+            modelBuilder.Entity("UrlShortner.Domain.UserCredential", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -113,7 +113,7 @@ namespace DataAcessEFCore.Migrations
                     b.ToTable("UserCredentials");
                 });
 
-            modelBuilder.Entity("DataTypes.UserToken", b =>
+            modelBuilder.Entity("UrlShortner.Domain.UserToken", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -150,9 +150,9 @@ namespace DataAcessEFCore.Migrations
                     b.ToTable("UserTokens");
                 });
 
-            modelBuilder.Entity("DataTypes.Url", b =>
+            modelBuilder.Entity("UrlShortner.Domain.Url", b =>
                 {
-                    b.HasOne("DataTypes.User", "User")
+                    b.HasOne("UrlShortner.Domain.User", "User")
                         .WithMany("Urls")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -161,20 +161,20 @@ namespace DataAcessEFCore.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("DataTypes.UserCredential", b =>
+            modelBuilder.Entity("UrlShortner.Domain.UserCredential", b =>
                 {
-                    b.HasOne("DataTypes.User", "User")
+                    b.HasOne("UrlShortner.Domain.User", "User")
                         .WithOne("UserCredential")
-                        .HasForeignKey("DataTypes.UserCredential", "UserId")
+                        .HasForeignKey("UrlShortner.Domain.UserCredential", "UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("DataTypes.UserToken", b =>
+            modelBuilder.Entity("UrlShortner.Domain.UserToken", b =>
                 {
-                    b.HasOne("DataTypes.User", "User")
+                    b.HasOne("UrlShortner.Domain.User", "User")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -183,7 +183,7 @@ namespace DataAcessEFCore.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("DataTypes.User", b =>
+            modelBuilder.Entity("UrlShortner.Domain.User", b =>
                 {
                     b.Navigation("Urls");
 

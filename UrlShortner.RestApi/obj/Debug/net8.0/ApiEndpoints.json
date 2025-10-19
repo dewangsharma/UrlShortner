@@ -9,13 +9,13 @@
     "Parameters": [
       {
         "Name": "request",
-        "Type": "DataTypes.Requests.AuthenticationReq",
+        "Type": "UrlShortner.RestApi.Models.Authentications.LoginRequest",
         "IsRequired": true
       }
     ],
     "ReturnTypes": [
       {
-        "Type": "DataTypes.Responses.AuthenticationRes",
+        "Type": "UrlShortner.RestApi.Models.Authentications.LoginResponse",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -35,13 +35,13 @@
     "Parameters": [
       {
         "Name": "request",
-        "Type": "DataTypes.Requests.RefreshTokenReq",
+        "Type": "UrlShortner.RestApi.Models.Authentications.RefreshTokenRequest",
         "IsRequired": true
       }
     ],
     "ReturnTypes": [
       {
-        "Type": "DataTypes.Responses.AuthenticationRes",
+        "Type": "UrlShortner.RestApi.Models.Authentications.LoginResponse",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -71,7 +71,7 @@
     "Parameters": [
       {
         "Name": "request",
-        "Type": "DataTypes.Requests.UrlCreateReq",
+        "Type": "UrlShortner.RestApi.Models.Urls.UrlCreateRequest",
         "IsRequired": true
       }
     ],
@@ -87,7 +87,7 @@
     "Parameters": [
       {
         "Name": "request",
-        "Type": "DataTypes.Requests.UrlUpdateReq",
+        "Type": "UrlShortner.RestApi.Models.Urls.UrlUpdateRequest",
         "IsRequired": true
       }
     ],
@@ -138,8 +138,8 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "reqData",
-        "Type": "DataTypes.Requests.UserRegisterReq",
+        "Name": "userCreateReq",
+        "Type": "UrlShortner.RestApi.Models.Users.UserCreateRequest",
         "IsRequired": true
       }
     ],
@@ -218,63 +218,5 @@
         "StatusCode": 200
       }
     ]
-  },
-  {
-    "ContainingType": "RESTWebApi.Controllers.UrlController",
-    "Method": "GetAll",
-    "RelativePath": "Url",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "RESTWebApi.Controllers.UrlController",
-    "Method": "Create",
-    "RelativePath": "Url",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "request",
-        "Type": "DataTypes.Requests.UrlCreateReq",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "RESTWebApi.Controllers.UrlController",
-    "Method": "Update",
-    "RelativePath": "Url",
-    "HttpMethod": "PUT",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "request",
-        "Type": "DataTypes.Requests.UrlUpdateReq",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "RESTWebApi.Controllers.UrlController",
-    "Method": "Get",
-    "RelativePath": "Url/{url}",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "url",
-        "Type": "System.String",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
   }
 ]

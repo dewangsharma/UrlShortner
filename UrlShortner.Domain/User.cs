@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace DataTypes
+namespace UrlShortner.Domain
 {
     public record User: DateTimeStamp
     {

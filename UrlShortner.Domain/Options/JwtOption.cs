@@ -1,4 +1,4 @@
-﻿namespace DataTypes.Options
+﻿namespace UrlShortner.Domain.Options
 {
     public class JwtOption
     {

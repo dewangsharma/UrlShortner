@@ -1,4 +1,4 @@
-﻿namespace DataTypes.Responses
+﻿namespace UrlShortner.Domain.Responses
 {
     public record AuthenticationRes
     {

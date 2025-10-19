@@ -1,8 +1,7 @@
-﻿using DataTypes;
-using DataTypes.Repositories;
+﻿using UrlShortner.Domain;
+using UrlShortner.Application.Repositories;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
-using UrlShortner.Domain;
 
 namespace DataAcessEFCore.Repositories
 {

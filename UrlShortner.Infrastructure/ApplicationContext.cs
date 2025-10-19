@@ -1,4 +1,4 @@
-﻿using DataTypes;
+﻿using UrlShortner.Domain;
 using Microsoft.EntityFrameworkCore;
 
 namespace DataAcessEFCore

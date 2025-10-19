@@ -1,6 +1,6 @@
 ﻿using UrlShortner.Domain;
 
-namespace DataTypes
+namespace UrlShortner.Domain
 {
     public record DateTimeStamp: BaseClass
     {

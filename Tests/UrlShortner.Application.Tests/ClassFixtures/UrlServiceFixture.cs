@@ -1,6 +1,6 @@
-﻿using BusinessLayer.Services;
-using DataTypes.Repositories;
+﻿using UrlShortner.Application.Repositories;
 using Moq;
+using UrlShortner.Application.Services;
 
 namespace UrlShortner.Application.Tests.ClassFixtures
 {

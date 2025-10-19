@@ -1,4 +1,4 @@
-﻿namespace BusinessLayer
+﻿namespace UrlShortner.Application
 {
     public static class ShortnerGenerator
     {

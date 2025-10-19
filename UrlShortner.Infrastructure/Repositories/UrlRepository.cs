@@ -1,5 +1,5 @@
-﻿using DataTypes;
-using DataTypes.Repositories;
+﻿using UrlShortner.Application.Repositories;
+using UrlShortner.Domain;
 
 namespace DataAcessEFCore.Repositories
 {

@@ -1,14 +1,13 @@
-﻿using DataTypes.Requests;
-using DataTypes.Responses;
+﻿using UrlShortner.Application.Models.Users;
 
-namespace BusinessLayer.Interfaces
+namespace UrlShortner.Application.Interfaces
 {
     public interface IUserService
     {
-        Task<AuthenticationRes> RegisterAsync(UserRegisterReq reqData, string ipAddress);
+        Task<UserDto> CreateAsync(UserCreateDto userCreateDto);
 
-        Task<UserRes> GetByIdAsync(int id);
+        Task<UserDto> GetByIdAsync(int id);
 
-        Task<UserRes> UpdateAsync(UserRegisterReq reqData, int id);
+        Task<UserDto> UpdateAsync(UserUpdateDto userUpdateDto, int id);
     }
 }

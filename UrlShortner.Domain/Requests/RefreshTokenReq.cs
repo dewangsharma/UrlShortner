@@ -1,4 +1,4 @@
-﻿namespace DataTypes.Requests
+﻿namespace UrlShortner.Domain.Requests
 {
     public record RefreshTokenReq
     {

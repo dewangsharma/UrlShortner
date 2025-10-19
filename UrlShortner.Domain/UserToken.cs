@@ -1,4 +1,4 @@
-﻿namespace DataTypes
+﻿namespace UrlShortner.Domain
 {
     public record UserToken: DateTimeStamp
     {

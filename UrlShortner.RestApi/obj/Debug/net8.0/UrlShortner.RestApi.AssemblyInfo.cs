@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("UrlShortner.RestApi")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1bf89f44fcfa1294315a89e0ca4f3afc71f62a20")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3e112d1a378ad0ab6efe666a61a83e885d43af74")]
 [assembly: System.Reflection.AssemblyProductAttribute("UrlShortner.RestApi")]
 [assembly: System.Reflection.AssemblyTitleAttribute("UrlShortner.RestApi")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
