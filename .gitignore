@@ -6,7 +6,7 @@ and other generated files that should not be committed to Git.
 
 #############################
 
-1. Project Build Output
+Project Build Output
 
 #############################
 
@@ -23,6 +23,15 @@ Code coverage results
 
 *.coverage
 *.coveragexml
+
+#############################
+
+Projects
+
+#############################
+**/**/bin/
+**/**/obj/
+
 
 #############################
 
