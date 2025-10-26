@@ -6,7 +6,7 @@ services:
     # 1. Production Target: Targets the small, secure runtime image
     build:
       context: .
-      dockerfile: UrlShortner.RestApi/Dockerfile # Assuming this path is correct, but MUST use 'target: final'
+      dockerfile: src/UrlShortner.RestApi/Dockerfile # Assuming this path is correct, but MUST use 'target: final'
       target: final 
       
     # 2. Volumes Removed: Source code should be baked into the image, 
@@ -26,5 +26,4 @@ services:
     # 5. Stability: Ensure the container restarts if it crashes
     restart: always
 
-# Note: The 'sqlserver' service is omitted, as the production database is
-# assumed to be managed externally (like AWS RDS).
+# connectionstring to be managed externally (like AWS RDS).

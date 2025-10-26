@@ -53,13 +53,13 @@ namespace RESTWebApi.Controllers
         [HttpGet("/test")]
         public ActionResult Test(int id)
         {
-            return Ok($"test {DateTime.Now.ToUniversalTime}");
+            return Ok($"test {DateTime.Now}");
         }
 
-        [HttpGet("/test1")]
+        [HttpGet("/test11")]
         public ActionResult Test1(int id)
         {
-            return Ok($"test1 {DateTime.Now.ToUniversalTime}");
+            return Ok($"test11 {DateTime.Now}");
         }
     }
 }

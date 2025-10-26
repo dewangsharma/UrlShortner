@@ -18,6 +18,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documents", "Documents", "{ED60E4B3-1C3C-4B69-2451-DE8E1ACBF1DB}"
 	ProjectSection(SolutionItems) = preProject
 		LICENSE = LICENSE
+		Live-ConnectionString.txt = Live-ConnectionString.txt
 		README.md = README.md
 		Write Your Own URL Shortener _ Coding Challenges.pdf = Write Your Own URL Shortener _ Coding Challenges.pdf
 	EndProjectSection

@@ -3,7 +3,7 @@ services:
     container_name: urlshortner-api
     build:
       context: .
-      dockerfile: UrlShortner.RestApi/Dockerfile.dev
+      dockerfile: src/UrlShortner.RestApi/Dockerfile.dev
     volumes:
       - .:/app
       # Exclude build output folders to avoid conflicts/permissions issues
@@ -17,7 +17,7 @@ services:
         - run
         # FIX: Changed the relative path to an absolute path for reliability
         - --project
-        - /app/UrlShortner.RestApi/UrlShortner.RestApi.csproj 
+        - /app/src/UrlShortner.RestApi/UrlShortner.RestApi.csproj 
         - --urls
         - http://0.0.0.0:8080
         - --no-restore # Skip restore since we did it in the Dockerfile.dev
