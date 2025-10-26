@@ -1,0 +1,119 @@
+.gitignore for C# / .NET Projects
+
+This file ignores typical build output, dependencies, Visual Studio artifacts,
+
+and other generated files that should not be committed to Git.
+
+#############################
+
+1. Project Build Output
+
+#############################
+[Bb]in/
+[Oo]bj/
+
+VS Test results
+
+*.trx
+
+Code coverage results
+
+*.coverage
+*.coveragexml
+
+#############################
+
+2. Dependencies & Packages
+
+#############################
+
+NuGet packages
+
+*.nupkg
+
+Package directories (if not using PackageReference)
+
+[Pp]ackages/
+
+Tools folder
+
+.tools/
+
+#############################
+
+3. Visual Studio / IDE Files
+
+#############################
+
+User-specific files
+
+*.user
+*.suo
+*.sln.docstates
+
+IntelliSense files
+
+*.ncb
+
+Test settings
+
+*.vsix
+
+VS Code specific files (if using VS Code)
+
+.vscode/
+
+VS 2017+
+
+.vs/
+
+Backup files
+
+*.bak
+
+Profiler results
+
+*.vsp
+*.sap
+
+Temporary files
+
+~$*
+
+#############################
+
+4. Docker and Containerization
+
+#############################
+
+Ignore the output folders created by docker-compose for development
+
+This prevents conflicts with bind mounts
+
+**/bin/
+**/obj/
+
+Docker secrets file (if used locally)
+
+.env
+
+Docker build context for specific scenarios (often handled by .dockerignore)
+
+.dockerignore
+
+#############################
+
+5. Logs and Configuration
+
+#############################
+
+Logs
+
+log/
+logs/
+*.log
+*.txt
+
+Runtime data
+
+*.sqlite

@@ -1,36 +1,30 @@
+version: '3.8'
+
 services:
-  api:
-    container_name: urlshortner-api
+  urlshortner.restapi:
+    container_name: urlshortner-prod-api
+    # 1. Production Target: Targets the small, secure runtime image
     build:
       context: .
-      dockerfile: UrlShortner.RestApi/Dockerfile
-    volumes:
-      - .:/app
-      # Exclude build output folders to avoid conflicts/permissions issues
-      - /app/obj/ 
-      - /app/bin/
-    ports:
-      - "5000:8080"
-    depends_on:
-        - sqlserver
+      dockerfile: UrlShortner.RestApi/Dockerfile # Assuming this path is correct, but MUST use 'target: final'
+      target: final 
+      
+    # 2. Volumes Removed: Source code should be baked into the image, 
+    # volumes are unnecessary and insecure in production.
+    
+    # 3. Secure Secret Injection & Environment
     environment:
-      - ASPNETCORE_ENVIRONMENT=Development
-      - ConnectionStrings__TinyUrlDb=Server=urlshortner-mssql,1433;Database=Tinyurl;User Id=sa;Password=Admin@123;TrustServerCertificate=True;
-
-  sqlserver:
-    image: mcr.microsoft.com/mssql/server:2022-latest
-    container_name: urlshortner-mssql
-    environment:
-      SA_PASSWORD: "Admin@123"
-      ACCEPT_EULA: "Y"
+      # Inject the connection string from the shell environment variable 
+      # (retrieved from AWS Secrets Manager)
+      - ConnectionStrings__TinyUrlDb=${DB_CONNECTION_STRING}
+      - ASPNETCORE_ENVIRONMENT=Production # CRITICAL: Ensure production settings are used
+      
     ports:
-      - "1433:1433"
-    volumes:
-      - sql_data:/var/opt/mssql
+      # 4. Standard Port Mapping: Map standard HTTP port 80 to container port 8080
+      - "80:8080"
+      
+    # 5. Stability: Ensure the container restarts if it crashes
+    restart: always
 
-volumes:
-  sql_data:
-
-networks:
-  appnetwork:
-    driver: bridge
+# Note: The 'sqlserver' service is omitted, as the production database is
+# assumed to be managed externally (like AWS RDS).
