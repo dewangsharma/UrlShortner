@@ -9,6 +9,9 @@ and other generated files that should not be committed to Git.
 1. Project Build Output
 
 #############################
+
+Ignore bin and obj folders at the root (for solution-level builds)
+
 [Bb]in/
 [Oo]bj/
 

@@ -6066,13 +6066,13 @@
     },
     "UrlShortner.Application/1.0.0": {
       "type": "project",
-      "path": "../../UrlShortner.Application/UrlShortner.Application.csproj",
-      "msbuildProject": "../../UrlShortner.Application/UrlShortner.Application.csproj"
+      "path": "../../src/UrlShortner.Application/UrlShortner.Application.csproj",
+      "msbuildProject": "../../src/UrlShortner.Application/UrlShortner.Application.csproj"
     },
     "UrlShortner.Domain/1.0.0": {
       "type": "project",
-      "path": "../../UrlShortner.Domain/UrlShortner.Domain.csproj",
-      "msbuildProject": "../../UrlShortner.Domain/UrlShortner.Domain.csproj"
+      "path": "../../src/UrlShortner.Domain/UrlShortner.Domain.csproj",
+      "msbuildProject": "../../src/UrlShortner.Domain/UrlShortner.Domain.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -6092,11 +6092,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Technical\\PracticeProjects\\UrlShortner\\UrlShortner\\Tests\\UrlShortner.Application.Tests\\UrlShortner.Application.Tests.csproj",
+      "projectUniqueName": "C:\\Technical\\PracticeProjects\\UrlShortner\\UrlShortner\\tests\\UrlShortner.Application.Tests\\UrlShortner.Application.Tests.csproj",
       "projectName": "UrlShortner.Application.Tests",
-      "projectPath": "C:\\Technical\\PracticeProjects\\UrlShortner\\UrlShortner\\Tests\\UrlShortner.Application.Tests\\UrlShortner.Application.Tests.csproj",
+      "projectPath": "C:\\Technical\\PracticeProjects\\UrlShortner\\UrlShortner\\tests\\UrlShortner.Application.Tests\\UrlShortner.Application.Tests.csproj",
       "packagesPath": "C:\\Users\\Dewang\\.nuget\\packages\\",
-      "outputPath": "C:\\Technical\\PracticeProjects\\UrlShortner\\UrlShortner\\Tests\\UrlShortner.Application.Tests\\obj\\",
+      "outputPath": "C:\\Technical\\PracticeProjects\\UrlShortner\\UrlShortner\\tests\\UrlShortner.Application.Tests\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -6117,8 +6117,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "C:\\Technical\\PracticeProjects\\UrlShortner\\UrlShortner\\UrlShortner.Application\\UrlShortner.Application.csproj": {
-              "projectPath": "C:\\Technical\\PracticeProjects\\UrlShortner\\UrlShortner\\UrlShortner.Application\\UrlShortner.Application.csproj"
+            "C:\\Technical\\PracticeProjects\\UrlShortner\\UrlShortner\\src\\UrlShortner.Application\\UrlShortner.Application.csproj": {
+              "projectPath": "C:\\Technical\\PracticeProjects\\UrlShortner\\UrlShortner\\src\\UrlShortner.Application\\UrlShortner.Application.csproj"
             }
           }
         }

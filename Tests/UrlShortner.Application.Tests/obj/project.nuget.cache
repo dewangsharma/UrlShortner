@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "G45cTKVt6H4=",
+  "dgSpecHash": "p2PTTagOwzQ=",
   "success": true,
-  "projectFilePath": "C:\\Technical\\PracticeProjects\\UrlShortner\\UrlShortner\\Tests\\UrlShortner.Application.Tests\\UrlShortner.Application.Tests.csproj",
+  "projectFilePath": "C:\\Technical\\PracticeProjects\\UrlShortner\\UrlShortner\\tests\\UrlShortner.Application.Tests\\UrlShortner.Application.Tests.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Dewang\\.nuget\\packages\\castle.core\\5.1.1\\castle.core.5.1.1.nupkg.sha512",
     "C:\\Users\\Dewang\\.nuget\\packages\\coverlet.collector\\6.0.0\\coverlet.collector.6.0.0.nupkg.sha512",
