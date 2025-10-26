@@ -1,33 +1,39 @@
 {
   "format": 1,
   "restore": {
-    "/app/UrlShortner.RestApi/UrlShortner.RestApi.csproj": {}
+    "C:\\Technical\\PracticeProjects\\UrlShortner\\UrlShortner\\UrlShortner.RestApi\\UrlShortner.RestApi.csproj": {}
   },
   "projects": {
-    "/app/UrlShortner.Application/UrlShortner.Application.csproj": {
+    "C:\\Technical\\PracticeProjects\\UrlShortner\\UrlShortner\\UrlShortner.Application\\UrlShortner.Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/app/UrlShortner.Application/UrlShortner.Application.csproj",
+        "projectUniqueName": "C:\\Technical\\PracticeProjects\\UrlShortner\\UrlShortner\\UrlShortner.Application\\UrlShortner.Application.csproj",
         "projectName": "UrlShortner.Application",
-        "projectPath": "/app/UrlShortner.Application/UrlShortner.Application.csproj",
-        "packagesPath": "/root/.nuget/packages/",
-        "outputPath": "/app/UrlShortner.Application/obj/",
+        "projectPath": "C:\\Technical\\PracticeProjects\\UrlShortner\\UrlShortner\\UrlShortner.Application\\UrlShortner.Application.csproj",
+        "packagesPath": "C:\\Users\\Dewang\\.nuget\\packages\\",
+        "outputPath": "C:\\Technical\\PracticeProjects\\UrlShortner\\UrlShortner\\UrlShortner.Application\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "/root/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\Dewang\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "/app/UrlShortner.Domain/UrlShortner.Domain.csproj": {
-                "projectPath": "/app/UrlShortner.Domain/UrlShortner.Domain.csproj"
+              "C:\\Technical\\PracticeProjects\\UrlShortner\\UrlShortner\\UrlShortner.Domain\\UrlShortner.Domain.csproj": {
+                "projectPath": "C:\\Technical\\PracticeProjects\\UrlShortner\\UrlShortner\\UrlShortner.Domain\\UrlShortner.Domain.csproj"
               }
             }
           }
@@ -41,7 +47,8 @@
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "direct"
-        }
+        },
+        "SdkAnalysisLevel": "9.0.300"
       },
       "frameworks": {
         "net8.0": {
@@ -72,26 +79,32 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/8.0.415/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.306/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "/app/UrlShortner.Domain/UrlShortner.Domain.csproj": {
+    "C:\\Technical\\PracticeProjects\\UrlShortner\\UrlShortner\\UrlShortner.Domain\\UrlShortner.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/app/UrlShortner.Domain/UrlShortner.Domain.csproj",
+        "projectUniqueName": "C:\\Technical\\PracticeProjects\\UrlShortner\\UrlShortner\\UrlShortner.Domain\\UrlShortner.Domain.csproj",
         "projectName": "UrlShortner.Domain",
-        "projectPath": "/app/UrlShortner.Domain/UrlShortner.Domain.csproj",
-        "packagesPath": "/root/.nuget/packages/",
-        "outputPath": "/app/UrlShortner.Domain/obj/",
+        "projectPath": "C:\\Technical\\PracticeProjects\\UrlShortner\\UrlShortner\\UrlShortner.Domain\\UrlShortner.Domain.csproj",
+        "packagesPath": "C:\\Users\\Dewang\\.nuget\\packages\\",
+        "outputPath": "C:\\Technical\\PracticeProjects\\UrlShortner\\UrlShortner\\UrlShortner.Domain\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "/root/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\Dewang\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -109,7 +122,8 @@
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "direct"
-        }
+        },
+        "SdkAnalysisLevel": "9.0.300"
       },
       "frameworks": {
         "net8.0": {
@@ -136,37 +150,43 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/8.0.415/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.306/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "/app/UrlShortner.Infrastructure/UrlShortner.Infrastructure.csproj": {
+    "C:\\Technical\\PracticeProjects\\UrlShortner\\UrlShortner\\UrlShortner.Infrastructure\\UrlShortner.Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/app/UrlShortner.Infrastructure/UrlShortner.Infrastructure.csproj",
+        "projectUniqueName": "C:\\Technical\\PracticeProjects\\UrlShortner\\UrlShortner\\UrlShortner.Infrastructure\\UrlShortner.Infrastructure.csproj",
         "projectName": "UrlShortner.Infrastructure",
-        "projectPath": "/app/UrlShortner.Infrastructure/UrlShortner.Infrastructure.csproj",
-        "packagesPath": "/root/.nuget/packages/",
-        "outputPath": "/app/UrlShortner.Infrastructure/obj/",
+        "projectPath": "C:\\Technical\\PracticeProjects\\UrlShortner\\UrlShortner\\UrlShortner.Infrastructure\\UrlShortner.Infrastructure.csproj",
+        "packagesPath": "C:\\Users\\Dewang\\.nuget\\packages\\",
+        "outputPath": "C:\\Technical\\PracticeProjects\\UrlShortner\\UrlShortner\\UrlShortner.Infrastructure\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "/root/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\Dewang\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "/app/UrlShortner.Application/UrlShortner.Application.csproj": {
-                "projectPath": "/app/UrlShortner.Application/UrlShortner.Application.csproj"
+              "C:\\Technical\\PracticeProjects\\UrlShortner\\UrlShortner\\UrlShortner.Application\\UrlShortner.Application.csproj": {
+                "projectPath": "C:\\Technical\\PracticeProjects\\UrlShortner\\UrlShortner\\UrlShortner.Application\\UrlShortner.Application.csproj"
               },
-              "/app/UrlShortner.Domain/UrlShortner.Domain.csproj": {
-                "projectPath": "/app/UrlShortner.Domain/UrlShortner.Domain.csproj"
+              "C:\\Technical\\PracticeProjects\\UrlShortner\\UrlShortner\\UrlShortner.Domain\\UrlShortner.Domain.csproj": {
+                "projectPath": "C:\\Technical\\PracticeProjects\\UrlShortner\\UrlShortner\\UrlShortner.Domain\\UrlShortner.Domain.csproj"
               }
             }
           }
@@ -180,7 +200,8 @@
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "direct"
-        }
+        },
+        "SdkAnalysisLevel": "9.0.300"
       },
       "frameworks": {
         "net8.0": {
@@ -225,37 +246,43 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/8.0.415/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.306/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "/app/UrlShortner.RestApi/UrlShortner.RestApi.csproj": {
+    "C:\\Technical\\PracticeProjects\\UrlShortner\\UrlShortner\\UrlShortner.RestApi\\UrlShortner.RestApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/app/UrlShortner.RestApi/UrlShortner.RestApi.csproj",
+        "projectUniqueName": "C:\\Technical\\PracticeProjects\\UrlShortner\\UrlShortner\\UrlShortner.RestApi\\UrlShortner.RestApi.csproj",
         "projectName": "UrlShortner.RestApi",
-        "projectPath": "/app/UrlShortner.RestApi/UrlShortner.RestApi.csproj",
-        "packagesPath": "/root/.nuget/packages/",
-        "outputPath": "/app/UrlShortner.RestApi/obj/",
+        "projectPath": "C:\\Technical\\PracticeProjects\\UrlShortner\\UrlShortner\\UrlShortner.RestApi\\UrlShortner.RestApi.csproj",
+        "packagesPath": "C:\\Users\\Dewang\\.nuget\\packages\\",
+        "outputPath": "C:\\Technical\\PracticeProjects\\UrlShortner\\UrlShortner\\UrlShortner.RestApi\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "/root/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\Dewang\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "/app/UrlShortner.Application/UrlShortner.Application.csproj": {
-                "projectPath": "/app/UrlShortner.Application/UrlShortner.Application.csproj"
+              "C:\\Technical\\PracticeProjects\\UrlShortner\\UrlShortner\\UrlShortner.Application\\UrlShortner.Application.csproj": {
+                "projectPath": "C:\\Technical\\PracticeProjects\\UrlShortner\\UrlShortner\\UrlShortner.Application\\UrlShortner.Application.csproj"
               },
-              "/app/UrlShortner.Infrastructure/UrlShortner.Infrastructure.csproj": {
-                "projectPath": "/app/UrlShortner.Infrastructure/UrlShortner.Infrastructure.csproj"
+              "C:\\Technical\\PracticeProjects\\UrlShortner\\UrlShortner\\UrlShortner.Infrastructure\\UrlShortner.Infrastructure.csproj": {
+                "projectPath": "C:\\Technical\\PracticeProjects\\UrlShortner\\UrlShortner\\UrlShortner.Infrastructure\\UrlShortner.Infrastructure.csproj"
               }
             }
           }
@@ -269,7 +296,8 @@
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "direct"
-        }
+        },
+        "SdkAnalysisLevel": "9.0.300"
       },
       "frameworks": {
         "net8.0": {
@@ -317,7 +345,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/8.0.415/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.306/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

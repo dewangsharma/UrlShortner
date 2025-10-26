@@ -1,0 +1,18 @@
+# Use the full SDK image for development since we need the 'dotnet watch' tool
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS dev
+
+WORKDIR /app/src
+
+# 1. Copy all .csproj files first and run restore. 
+# This leverages Docker caching: if only source code changes, we don't restore every time.
+COPY UrlShortner.RestApi/UrlShortner.RestApi.csproj UrlShortner.RestApi/
+COPY UrlShortner.Application/UrlShortner.Application.csproj UrlShortner.Application/
+COPY UrlShortner.Domain/UrlShortner.Domain.csproj UrlShortner.Domain/
+COPY UrlShortner.Infrastructure/UrlShortner.Infrastructure.csproj UrlShortner.Infrastructure/
+
+RUN dotnet restore ./UrlShortner.RestApi/UrlShortner.RestApi.csproj
+
+# We don't copy the source code here. The source code will be mounted 
+# as a volume from the host machine using docker-compose.
+# The CMD is a placeholder, letting docker-compose define the startup command.
+CMD ["tail", "-f", "/dev/null"]
