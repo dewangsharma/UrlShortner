@@ -49,5 +49,17 @@ namespace RESTWebApi.Controllers
         public void Delete(int id)
         {
         }
+
+        [HttpGet("/test")]
+        public ActionResult Test(int id)
+        {
+            return Ok($"test {DateTime.Now.ToUniversalTime}");
+        }
+
+        [HttpGet("/test1")]
+        public ActionResult Test1(int id)
+        {
+            return Ok($"test1 {DateTime.Now.ToUniversalTime}");
+        }
     }
 }

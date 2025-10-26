@@ -4,10 +4,7 @@ namespace UrlShortner.Domain
 {
     public record class BaseClass
     {
-        [Key]
-        public int Id { get; set; }
-
-        [Key]
-        public Guid UuId { get; set; }
+        [Required]
+        public Guid UuId { get; set; } = Guid.NewGuid();
     }
 }

@@ -15,17 +15,20 @@ namespace DataAcessEFCore.Repositories
 
         public async Task<T?> GetByIdAsync(int id)
         {
-            return await _context.Set<T>().AsNoTracking().FirstOrDefaultAsync( x => x.Id == id);
+            return null;
+            // return await _context.Set<T>().AsNoTracking().FirstOrDefaultAsync( x => x.Id == id);
         }
 
         public async Task<T?> GetByUuIdAsync(Guid uuid)
         {
-            return await _context.Set<T>().AsNoTracking().FirstOrDefaultAsync(x => x.UuId == uuid);
+            return null;
+            // return await _context.Set<T>().AsNoTracking().FirstOrDefaultAsync(x => x.UuId == uuid);
         }
 
         public async Task<T?> GetByIdAndUuIdAsync(int id, Guid uuid)
         {
-            return await _context.Set<T>().AsNoTracking().FirstOrDefaultAsync(x => x.Id == id && x.UuId == uuid);
+            return null;
+            // return await _context.Set<T>().AsNoTracking().FirstOrDefaultAsync(x => x.Id == id && x.UuId == uuid);
         }
 
         public async Task<T?> GetSingleAsync(Expression<Func<T, bool>> expression)
@@ -83,6 +86,24 @@ namespace DataAcessEFCore.Repositories
             throw new NotImplementedException();
         }
 
-        
+        public async Task ExecuteInTransactionAsync(Func<Task> operation)
+        {
+            await using var transaction = await _context.Database.BeginTransactionAsync();
+
+            try
+            {
+                // Execute the operation (a delegate)
+                await operation();
+
+                // Commit if everything succeeds
+                await transaction.CommitAsync();
+            }
+            catch
+            {
+                // Rollback on failure
+                await transaction.RollbackAsync();
+                throw;
+            }
+        }
     }
 }

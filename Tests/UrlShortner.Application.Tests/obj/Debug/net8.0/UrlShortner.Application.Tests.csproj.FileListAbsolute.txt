@@ -1,10 +1,4 @@
 C:\Technical\PracticeProjects\UrlShortner\UrlShortner\Tests\UrlShortner.Application.Tests\bin\Debug\net8.0\CoverletSourceRootsMapping_UrlShortner.Application.Tests
-C:\Technical\PracticeProjects\UrlShortner\UrlShortner\Tests\UrlShortner.Application.Tests\obj\Debug\net8.0\UrlShortner.Application.Tests.csproj.AssemblyReference.cache
-C:\Technical\PracticeProjects\UrlShortner\UrlShortner\Tests\UrlShortner.Application.Tests\obj\Debug\net8.0\UrlShortner.Application.Tests.GeneratedMSBuildEditorConfig.editorconfig
-C:\Technical\PracticeProjects\UrlShortner\UrlShortner\Tests\UrlShortner.Application.Tests\obj\Debug\net8.0\UrlShortner.Application.Tests.AssemblyInfoInputs.cache
-C:\Technical\PracticeProjects\UrlShortner\UrlShortner\Tests\UrlShortner.Application.Tests\obj\Debug\net8.0\UrlShortner.Application.Tests.AssemblyInfo.cs
-C:\Technical\PracticeProjects\UrlShortner\UrlShortner\Tests\UrlShortner.Application.Tests\obj\Debug\net8.0\UrlShortner.Application.Tests.csproj.CoreCompileInputs.cache
-C:\Technical\PracticeProjects\UrlShortner\UrlShortner\Tests\UrlShortner.Application.Tests\obj\Debug\net8.0\UrlShortner.Application.Tests.sourcelink.json
 C:\Technical\PracticeProjects\UrlShortner\UrlShortner\Tests\UrlShortner.Application.Tests\bin\Debug\net8.0\testhost.dll
 C:\Technical\PracticeProjects\UrlShortner\UrlShortner\Tests\UrlShortner.Application.Tests\bin\Debug\net8.0\testhost.exe
 C:\Technical\PracticeProjects\UrlShortner\UrlShortner\Tests\UrlShortner.Application.Tests\bin\Debug\net8.0\xunit.runner.visualstudio.dotnetcore.testadapter.dll
@@ -107,6 +101,12 @@ C:\Technical\PracticeProjects\UrlShortner\UrlShortner\Tests\UrlShortner.Applicat
 C:\Technical\PracticeProjects\UrlShortner\UrlShortner\Tests\UrlShortner.Application.Tests\bin\Debug\net8.0\UrlShortner.Domain.dll
 C:\Technical\PracticeProjects\UrlShortner\UrlShortner\Tests\UrlShortner.Application.Tests\bin\Debug\net8.0\UrlShortner.Application.pdb
 C:\Technical\PracticeProjects\UrlShortner\UrlShortner\Tests\UrlShortner.Application.Tests\bin\Debug\net8.0\UrlShortner.Domain.pdb
+C:\Technical\PracticeProjects\UrlShortner\UrlShortner\Tests\UrlShortner.Application.Tests\obj\Debug\net8.0\UrlShortner.Application.Tests.csproj.AssemblyReference.cache
+C:\Technical\PracticeProjects\UrlShortner\UrlShortner\Tests\UrlShortner.Application.Tests\obj\Debug\net8.0\UrlShortner.Application.Tests.GeneratedMSBuildEditorConfig.editorconfig
+C:\Technical\PracticeProjects\UrlShortner\UrlShortner\Tests\UrlShortner.Application.Tests\obj\Debug\net8.0\UrlShortner.Application.Tests.AssemblyInfoInputs.cache
+C:\Technical\PracticeProjects\UrlShortner\UrlShortner\Tests\UrlShortner.Application.Tests\obj\Debug\net8.0\UrlShortner.Application.Tests.AssemblyInfo.cs
+C:\Technical\PracticeProjects\UrlShortner\UrlShortner\Tests\UrlShortner.Application.Tests\obj\Debug\net8.0\UrlShortner.Application.Tests.csproj.CoreCompileInputs.cache
+C:\Technical\PracticeProjects\UrlShortner\UrlShortner\Tests\UrlShortner.Application.Tests\obj\Debug\net8.0\UrlShortner.Application.Tests.sourcelink.json
 C:\Technical\PracticeProjects\UrlShortner\UrlShortner\Tests\UrlShortner.Application.Tests\obj\Debug\net8.0\UrlShort.DF6D242E.Up2Date
 C:\Technical\PracticeProjects\UrlShortner\UrlShortner\Tests\UrlShortner.Application.Tests\obj\Debug\net8.0\UrlShortner.Application.Tests.dll
 C:\Technical\PracticeProjects\UrlShortner\UrlShortner\Tests\UrlShortner.Application.Tests\obj\Debug\net8.0\refint\UrlShortner.Application.Tests.dll

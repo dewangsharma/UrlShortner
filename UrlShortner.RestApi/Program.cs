@@ -1,3 +1,5 @@
+﻿using DataAcessEFCore;
+using Microsoft.EntityFrameworkCore;
 using RESTWebApi.Exceptions;
 using RESTWebApi.Extensions;
 using RESTWebApi.Options;
@@ -36,6 +38,25 @@ namespace RESTWebApi
             var app = builder.Build();
 
             app.UseMiddleware<GlobalCancellationException>();
+
+            // Apply migrations automatically on startup
+            using (var scope = app.Services.CreateScope())
+            {
+                var db = scope.ServiceProvider.GetRequiredService<ApplicationContext>();
+                var pendingMigrations = db.Database.GetPendingMigrations();
+
+                if (pendingMigrations.Any())
+                {
+                    Console.WriteLine("Applying pending EF Core migrations...");
+                    db.Database.Migrate();
+                    Console.WriteLine("Database is up to date.");
+                }
+                else
+                {
+                    Console.WriteLine("No pending migrations found.");
+                }
+            }
+
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {

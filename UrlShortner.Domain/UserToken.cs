@@ -1,13 +1,17 @@
-﻿namespace UrlShortner.Domain
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace UrlShortner.Domain
 {
     public record UserToken: DateTimeStamp
     {
-        public int UserId { get; set; }
+        [Key]
+        public int Id { get; set; }
         public string Token { get; set; }
         public string RefreshToken{ get; set; }
         public DateTime RefreshTokenExpired { get; set; }
         public string IPAddress { get; set; }
 
+        public int UserId { get; set; }
         public User? User { get; set; }
     }
 
