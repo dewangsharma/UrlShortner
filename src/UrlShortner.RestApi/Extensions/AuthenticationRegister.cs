@@ -21,11 +21,11 @@ namespace RESTWebApi.Extensions
                          ValidateLifetime = true,
                          ValidateIssuer = true,
                          ValidateAudience = true,
-                         ValidAudience = builder.Configuration["JWT:Audience"],
-                         ValidIssuer = builder.Configuration["JWT:Issuer"],
-                         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JWT:SecretKey"]))
+                         ValidAudience = builder.Configuration["JwtSettings:Audience"],
+                         ValidIssuer = builder.Configuration["JwtSettings:Issuer"],
+                         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JwtSettings:SecretKey"]))
                      };
-                     jwt.Audience = builder.Configuration.GetSection("JWT:Audience").Value;
+                     jwt.Audience = builder.Configuration.GetSection("JwtSettings:Audience").Value;
                  });
         }
     }

@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 using UrlShortner.Application.Repositories;
 
-namespace DataAcessEFCore.Repositories
+namespace UrlShortner.Infrastructure.Repositories
 {
     public class UserCredentialRepository : GenericRepository<UserCredential>, IUserCredentialRepository
     {

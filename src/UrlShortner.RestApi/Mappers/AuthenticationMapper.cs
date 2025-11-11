@@ -15,7 +15,6 @@ namespace UrlShortner.RestApi.Mappers
             };
         }
 
-
         public static RefreshTokenDto ToDto(this RefreshTokenRequest loginRequest, string ipAddress)
         {
             return new RefreshTokenDto
@@ -23,6 +22,17 @@ namespace UrlShortner.RestApi.Mappers
                 RefreshToken = loginRequest.RefreshToken,
                 Token = loginRequest.Token,
                 IPAddress = ipAddress
+            };
+        }
+
+        public static LoginResponse ToResponse(this LoginResponseDto loginResponse)
+        {
+            return new LoginResponse
+            {
+                ExpiresIn = loginResponse.ExpiresIn,
+                RefreshToken = loginResponse.RefreshToken,
+                TokenType = loginResponse.TokenType,
+                Token = loginResponse.Token
             };
         }
     }

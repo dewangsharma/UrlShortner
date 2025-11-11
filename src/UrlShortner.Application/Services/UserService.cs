@@ -42,7 +42,7 @@ namespace UrlShortner.Application.Services
 
             User result = null;
             var encryptionResponse = _authService.EncryptCredentials(userCreateDto.Email, userCreateDto.Password);
-            userCreateDto.Email = encryptionResponse.Email;
+            userCreateDto.Email = encryptionResponse.Username;
             var userEntity = userCreateDto.ToDomain();
             
             //await _userRepository.ExecuteInTransactionAsync(async () =>
@@ -51,7 +51,7 @@ namespace UrlShortner.Application.Services
             //    var userCredDb = await _userCredentialRepository.AddAsync(userCredential);
             //});
             result = await _userRepository.AddAsync(userEntity);
-            var userCredential = new UserCredential() { User = result, Username = encryptionResponse.Email, Password = encryptionResponse.Password, UserId = result.Id };
+            var userCredential = new UserCredential() { User = result, Username = encryptionResponse.Username, Password = encryptionResponse.Password, UserId = result.Id };
 
             var userCredDb = await _userCredentialRepository.AddAsync(userCredential);
 
@@ -69,7 +69,5 @@ namespace UrlShortner.Application.Services
             var userRes = await _userRepository.UpdateAsync(userUpdateDto.ToDomain());
             return userRes.ToDto();
         }
-
-
     }
 }

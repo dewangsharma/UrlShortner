@@ -1,8 +1,7 @@
-﻿using DataAcessEFCore;
-using DataAcessEFCore.Repositories;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using UrlShortner.Application.Repositories;
+using UrlShortner.Infrastructure.Repositories;
 
 namespace UrlShortner.Infrastructure
 {

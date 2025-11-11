@@ -1,4 +1,5 @@
 ﻿using System.Net;
+using System.Text.Json;
 
 namespace RESTWebApi.Exceptions
 {
@@ -35,13 +36,30 @@ namespace RESTWebApi.Exceptions
         }
         private async Task HandleExceptionAsync(HttpContext context, Exception exception)
         {
+            if (context.Response.HasStarted)
+            {
+                // Can't modify response once started
+                return;
+            }
+
             context.Response.ContentType = "application/json";
             context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
-            await context.Response.WriteAsync(new ErrorDetails
+
+            var problem = new
             {
-                StatusCode = context.Response.StatusCode,
-                Message = $"Internal Server Error. {exception.Message}"
-            }.ToString());
+                title = "An unexpected error occurred.",
+                status = context.Response.StatusCode
+            };
+
+            //await context.Response.WriteAsync(new ErrorDetails
+            //{
+            //    StatusCode = context.Response.StatusCode,
+            //    Message = $"Internal Server Error. {exception.Message}"
+            //}.ToString());
+
+
+            var json = JsonSerializer.Serialize(problem);
+            await context.Response.WriteAsync(json);
         }
     }
 }

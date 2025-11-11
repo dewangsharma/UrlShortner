@@ -6,15 +6,15 @@ using UrlShortner.Application.Models.Urls;
 using UrlShortner.RestApi.Mappers;
 using UrlShortner.RestApi.Models.Urls;
 
-namespace RESTWebApi.Controllers
+namespace UrlShortner.RestApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
     [Authorize]
-    public class UrlController : ControllerBase
+    public class UrlsController : ControllerBase
     {
         private readonly IUrlService _urlService;
-        public UrlController(IUrlService urlService)
+        public UrlsController(IUrlService urlService)
         {
             _urlService = urlService;
         }

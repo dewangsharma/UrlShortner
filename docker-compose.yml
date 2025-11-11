@@ -6,7 +6,7 @@ services:
     # 1. Production Target: Targets the small, secure runtime image
     build:
       context: .
-      dockerfile: src/UrlShortner.RestApi/Dockerfile # Assuming this path is correct, but MUST use 'target: final'
+      dockerfile: src/UrlShortner.RestApi/Dockerfile
       target: final 
       
     # 2. Volumes Removed: Source code should be baked into the image, 

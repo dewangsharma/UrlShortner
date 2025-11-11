@@ -1,10 +1,9 @@
 ﻿using UrlShortner.Domain;
 using Microsoft.EntityFrameworkCore;
-using System.Linq;
 using System.Linq.Expressions;
 using UrlShortner.Application.Repositories;
 
-namespace DataAcessEFCore.Repositories
+namespace UrlShortner.Infrastructure.Repositories
 {
     public class UserTokenRepository : GenericRepository<UserToken>, IUserTokenRepository
     {

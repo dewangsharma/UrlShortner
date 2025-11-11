@@ -3,7 +3,7 @@ using UrlShortner.Application.Repositories;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 
-namespace DataAcessEFCore.Repositories
+namespace UrlShortner.Infrastructure.Repositories
 {
     public class GenericRepository<T> : IGenericRepository<T> where T : BaseClass
     {

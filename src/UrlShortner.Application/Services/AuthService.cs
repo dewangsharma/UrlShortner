@@ -1,5 +1,4 @@
-﻿using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
@@ -9,56 +8,57 @@ using System.Text;
 using UrlShortner.Application.Interfaces;
 using UrlShortner.Application.Models.Authentications;
 using UrlShortner.Application.Repositories;
+using UrlShortner.Application.Settings;
 using UrlShortner.Domain;
-using UrlShortner.Domain.Options;
 
 namespace UrlShortner.Application.Services
 {
     public class AuthService : IAuthService
     {
-        private readonly string _usernameSalt;
-        private readonly string _passwordSalt;
         private readonly IUserCredentialRepository _userCredentialRepository;
         private readonly IUserTokenRepository _userTokenRepository;
-        const int keySize = 64;
-        const int iterations = 350000;
-        const int tokenExpiresMinutes = 15;
-        HashAlgorithmName hashAlgorithm = HashAlgorithmName.SHA512;
-
+        private readonly JwtSettings _jwtSettings;
+        private readonly SaltKeySettings _saltKeySettings;
         private readonly ILogger<AuthService> _logger;
 
-        private readonly JwtOption _jwtOption;
+        HashAlgorithmName hashAlgorithm = HashAlgorithmName.SHA512;
 
-        public AuthService(IConfiguration config,
+        public AuthService(ILogger<AuthService> logger,
+            IOptions<JwtSettings> jwtSettingsOption,
+            IOptions<SaltKeySettings> saltKeySettingsOption,
             IUserCredentialRepository userCredentialRepository,
-            IUserTokenRepository userTokenRepository,
-            IOptions<JwtOption> option,
-            ILogger<AuthService> logger)
+            IUserTokenRepository userTokenRepository)
         {
-            _usernameSalt = config.GetSection("SaltKey:Username").Value ?? throw new KeyNotFoundException("SaltKey:Username");
-            _passwordSalt = config.GetSection("SaltKey:Password").Value ?? throw new KeyNotFoundException("SaltKey:Password");
+            _logger = logger;
+            _saltKeySettings = saltKeySettingsOption.Value;
+            _jwtSettings = jwtSettingsOption.Value;
+
             _userCredentialRepository = userCredentialRepository;
             _userTokenRepository = userTokenRepository;
-            _logger = logger;
-
-            _jwtOption = option.Value;
         }
 
-        public (string Email, string Password) EncryptCredentials(string username, string password)
+        public EncryptionResponse EncryptCredentials(string username, string password)
         {
-            return (GetHashedValue(username, _usernameSalt), GetHashedValue(password, _passwordSalt));
+            var encryptedEmail = GetHashedValue(username, _saltKeySettings.Username);
+            var encryptedPassword = GetHashedValue(password, _saltKeySettings.Password);
+
+            return new EncryptionResponse
+            {
+                Username = encryptedEmail,
+                Password = encryptedPassword
+            };
         }
 
-        public async Task<LoginResponseDto> LoginAsync(LoginDto loginDto)
+        public async Task<LoginResponseDto> LoginAsync(LoginDto loginDto, CancellationToken cancellationToken)
         {
-            var hashedUsername = GetHashedValue(loginDto.UserName, _usernameSalt);
-            var hashedPassword = GetHashedValue(loginDto.Password, _passwordSalt);
+            var hashedUsername = GetHashedValue(loginDto.UserName, _saltKeySettings.Username);
+            var hashedPassword = GetHashedValue(loginDto.Password, _saltKeySettings.Password);
             var userCred = await _userCredentialRepository.FindAsync(x => x.Username == hashedUsername && x.Password == hashedPassword);
 
             if (userCred != null)
             {
                 var user = userCred.User;
-                var expiresIn = DateTime.UtcNow.AddMinutes(tokenExpiresMinutes);
+                var expiresIn = DateTime.UtcNow.AddMinutes(_jwtSettings.TokenExpiresMinutes);
                 var token = GenerateToken(userCred.User!, expiresIn);
                 var refreshToken = GenerateRefreshToken();
                 var refreshTokenExpiration = DateTime.UtcNow.AddDays(7);
@@ -69,21 +69,21 @@ namespace UrlShortner.Application.Services
                 {
                     TokenType = "Bearer",
                     Token = token,
-                    ExpiresIn = tokenExpiresMinutes * 60 * 60,
+                    ExpiresIn = _jwtSettings.TokenExpiresMinutes * 60 * 60,
                     RefreshToken = refreshToken,
                 };
             }
             return await Task.FromResult<LoginResponseDto>(null);
         }
 
-        public async Task<LoginResponseDto> GetRefreshToken(RefreshTokenDto refreshTokenDto)
+        public async Task<LoginResponseDto> GetRefreshToken(RefreshTokenDto refreshTokenDto, CancellationToken cancellationToken)
         {
             var userToken = await _userTokenRepository.GetUserTokenAsync(x => x.Token == refreshTokenDto.Token && x.RefreshToken == refreshTokenDto.RefreshToken && x.IPAddress == refreshTokenDto.IPAddress);
 
             if (userToken is not null)
             {
                 // var user = userToken.User;
-                var expiresIn = DateTime.UtcNow.AddMinutes(tokenExpiresMinutes);
+                var expiresIn = DateTime.UtcNow.AddMinutes(_jwtSettings.TokenExpiresMinutes);
                 var newToken = GenerateToken(userToken.User!, expiresIn);
                 var newRefreshToken = GenerateRefreshToken();
                 var refreshTokenExpiration = DateTime.UtcNow.AddDays(7);
@@ -98,7 +98,7 @@ namespace UrlShortner.Application.Services
                 {
                     TokenType = "Bearer",
                     Token = newToken,
-                    ExpiresIn = tokenExpiresMinutes * 60 * 60,
+                    ExpiresIn = _jwtSettings.TokenExpiresMinutes * 60 * 60,
                     RefreshToken = newRefreshToken,
                 };
             }
@@ -117,14 +117,14 @@ namespace UrlShortner.Application.Services
                 new Claim(ClaimTypes.Email, user.Email)
             };
 
-            var key = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(_jwtOption.SecretKey));
+            var key = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(_jwtSettings.SecretKey));
             var signInCredentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256Signature);
             var jwtToken = new JwtSecurityToken(
                 claims: claims,
                 expires: expiration,
                 signingCredentials: signInCredentials,
-                issuer: _jwtOption.Issuer,
-                audience: _jwtOption.Audience
+                issuer: _jwtSettings.Issuer,
+                audience: _jwtSettings.Audience
                 );
 
             return new JwtSecurityTokenHandler().WriteToken(jwtToken);
@@ -136,16 +136,16 @@ namespace UrlShortner.Application.Services
             var hash = Rfc2898DeriveBytes.Pbkdf2(
                 Encoding.UTF8.GetBytes(inputValue),
                 salt,
-                iterations,
+                _jwtSettings.Iterations,
                 hashAlgorithm,
-                keySize);
+                _jwtSettings.KeySize);
 
             return Convert.ToHexString(hash);
         }
 
         bool VerifyPassword(string password, string hash, byte[] salt)
         {
-            var hashToCompare = Rfc2898DeriveBytes.Pbkdf2(password, salt, iterations, hashAlgorithm, keySize);
+            var hashToCompare = Rfc2898DeriveBytes.Pbkdf2(password, salt, _jwtSettings.Iterations, hashAlgorithm, _jwtSettings.KeySize);
             return CryptographicOperations.FixedTimeEquals(hashToCompare, Convert.FromHexString(hash));
         }
         private string GenerateRefreshToken()

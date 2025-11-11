@@ -1,7 +1,7 @@
 ﻿using UrlShortner.Domain;
 using Microsoft.EntityFrameworkCore;
 
-namespace DataAcessEFCore
+namespace UrlShortner.Infrastructure
 {
     public class ApplicationContext : DbContext
     {

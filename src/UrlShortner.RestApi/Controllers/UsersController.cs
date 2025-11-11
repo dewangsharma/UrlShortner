@@ -3,14 +3,14 @@ using UrlShortner.Application.Interfaces;
 using UrlShortner.RestApi.Mappers;
 using UrlShortner.RestApi.Models.Users;
 
-namespace RESTWebApi.Controllers
+namespace UrlShortner.RestApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UserController : ControllerBase
+    public class UsersController : ControllerBase
     {
         private readonly IUserService _userService;
-        public UserController(IUserService userService)
+        public UsersController(IUserService userService)
         {
             _userService = userService;
         }
@@ -48,18 +48,7 @@ namespace RESTWebApi.Controllers
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
-        }
-
-        [HttpGet("/test")]
-        public ActionResult Test(int id)
-        {
-            return Ok($"test {DateTime.Now}");
-        }
-
-        [HttpGet("/test11")]
-        public ActionResult Test1(int id)
-        {
-            return Ok($"test11 {DateTime.Now}");
+            throw new NotImplementedException();
         }
     }
 }

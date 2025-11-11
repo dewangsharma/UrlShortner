@@ -1,5 +1,5 @@
-﻿using DataAcessEFCore;
-using DataAcessEFCore.Repositories;
+﻿using UrlShortner.Infrastructure;
+using UrlShortner.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 // using UrlShortner.Domain.Repositories;
 

@@ -9,9 +9,25 @@ namespace RESTWebApi.Extensions
             int userId = 0;
             if (httpContext.User.Identity is ClaimsIdentity identity)
             {
-                userId = int.Parse(identity.FindFirst(ClaimTypes.Sid).Value);
+                var sidClaim = identity.FindFirst(ClaimTypes.Sid);
+                if (sidClaim != null && int.TryParse(sidClaim.Value, out int parsedUserId))
+                {
+                    userId = parsedUserId;
+                }
             }
             return userId;
+        }
+
+        public static string GetClientIP(this HttpContext httpContext)
+        {
+            var xForwardedFor = httpContext.Request.Headers["X-Forwarded-For"].FirstOrDefault();
+
+            if (!string.IsNullOrEmpty(xForwardedFor))
+            {
+                return xForwardedFor.Split(',').First().Trim();
+            }
+
+            return httpContext.Connection.RemoteIpAddress?.ToString() ?? "Unknown";
         }
     }
 }
