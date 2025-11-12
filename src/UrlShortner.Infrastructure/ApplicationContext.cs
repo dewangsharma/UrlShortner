@@ -10,9 +10,11 @@ namespace UrlShortner.Infrastructure
         }
 
         public DbSet<User> Users { get; set; }
+        public DbSet<Role> Roles { get; set; }
         public DbSet<Url> Urls { get; set; }
         public DbSet<UserCredential> UserCredentials { get; set; }
         public DbSet<UserToken> UserTokens { get; set; }
+        public DbSet<UserRole> UserRoles { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

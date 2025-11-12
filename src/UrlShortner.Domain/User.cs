@@ -16,6 +16,7 @@ namespace UrlShortner.Domain
         public ICollection<UserToken> UserTokens { get; set; }
 
         public ICollection<UserUrl> UserUrls { get; set; } = new List<UserUrl>();
+        public ICollection<UserRole> UserRoles { get; set; } = new List<UserRole>();
 
     }
 }

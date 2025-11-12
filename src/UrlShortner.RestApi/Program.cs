@@ -1,14 +1,9 @@
-﻿using FluentValidation;
-using FluentValidation.AspNetCore;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Caching.StackExchangeRedis;
+﻿using Microsoft.EntityFrameworkCore;
 using RESTWebApi.Exceptions;
 using RESTWebApi.Extensions;
-using System.Threading.RateLimiting;
-using UrlShortner.Application.Interfaces;
 using UrlShortner.Application.Settings;
 using UrlShortner.Infrastructure;
-using UrlShortner.RestApi.Models.Authentications;
+using UrlShortner.RestApi.Extensions;
 using UrlShortner.RestApi.Securities;
 
 namespace RESTWebApi
@@ -19,44 +14,20 @@ namespace RESTWebApi
         {
             var builder = WebApplication.CreateBuilder(args);
 
+            // Accept JSON case insensitive
             builder.Services.AddControllers().AddJsonOptions(options =>
             {
                 options.JsonSerializerOptions.PropertyNameCaseInsensitive = true;
             });
 
             // FluentValidation
-            builder.Services.AddFluentValidationAutoValidation();
-            builder.Services.AddValidatorsFromAssemblyContaining<LoginRequestValidator>();
-            builder.Services.AddValidatorsFromAssemblyContaining<RefreshTokenRequestValidator>();
+            builder.AddFluentValidations();
 
-
-            // builder.Services.AddMemoryCache(); // needed by lockout decorator below
+            // Configure Redis Cache
             builder.Services.AddStackExchangeRedisCache(options =>
             {
                 options.Configuration = builder.Configuration.GetConnectionString("Redis");
             });
-
-            /*
-            builder.Services.AddRateLimiter(options =>
-            {
-                options.RejectionStatusCode = StatusCodes.Status429TooManyRequests;
-
-                options.AddPolicy("LoginPolicy", httpContext =>
-                {
-                    // Partition by client IP
-                    var ip = httpContext.Connection.RemoteIpAddress?.ToString() ?? "unknown";
-                    return RateLimitPartition.GetTokenBucketLimiter(ip, _ => new TokenBucketRateLimiterOptions
-                    {
-                        TokenLimit = 5,                       // max tokens stored
-                        QueueProcessingOrder = QueueProcessingOrder.OldestFirst,
-                        QueueLimit = 0,                       // don't queue beyond tokens
-                        ReplenishmentPeriod = TimeSpan.FromMinutes(1),
-                        TokensPerPeriod = 5,                  // refill 5 tokens per minute
-                        AutoReplenishment = true
-                    });
-                });
-            });
-            */
 
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
@@ -67,6 +38,7 @@ namespace RESTWebApi
             builder.AddServices();
             builder.AddLogging();
             builder.AuthWithJWTBearer();
+
             // builder.AddRepositories();
 
             builder.Services.AddInfrastructure(builder.Configuration.GetSection("ConnectionStrings:TinyUrlDb").Value);

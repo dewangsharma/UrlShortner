@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Caching.Distributed;
+using RESTWebApi.Extensions;
 using System.Text.Json;
 using UrlShortner.RestApi.Models.Authentications;
 
@@ -19,14 +20,14 @@ namespace UrlShortner.RestApi.Securities
         {
             var path = context.Request.Path.Value?.ToLower();
 
-            // Apply rate limit only on /login
+            // Apply rate limit only on /authentication
             if (!path.Contains("authentication"))
             {
                 await _next(context);
                 return;
             }
 
-            string ip = context.Connection.RemoteIpAddress?.ToString() ?? "unknown";
+            string ip = context.GetClientIP();
 
             string username = "";
             if (context.Request.Method == "POST" &&
@@ -41,11 +42,10 @@ namespace UrlShortner.RestApi.Securities
                 // email = json?.email ?? "";
 
                 var dto = JsonSerializer.Deserialize<LoginRequest>(body);
-                username = dto.UserName;
+                username = dto?.UserName ?? "";
             }
 
-            var key = $"login:{username}:{ip}";
-
+            var key = $"authentication:{username}:{ip}";
 
             var attempts = await _cache.GetStringAsync(key);
 
@@ -56,7 +56,7 @@ namespace UrlShortner.RestApi.Securities
                 context.Response.StatusCode = 429; // Too Many Requests
                 await context.Response.WriteAsJsonAsync(new
                 {
-                    error = "Too many login attempts. Try again in 1 minute."
+                    error = "Too many login attempts. Try again after sometime"
                 });
                 return;
             }
@@ -68,7 +68,7 @@ namespace UrlShortner.RestApi.Securities
                 count.ToString(),
                 new DistributedCacheEntryOptions
                 {
-                    AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(1)
+                    AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(2)
                 });
 
             await _next(context);

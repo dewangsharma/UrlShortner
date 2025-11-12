@@ -69,7 +69,7 @@ namespace UrlShortner.Application.Services
                 {
                     TokenType = "Bearer",
                     Token = token,
-                    ExpiresIn = _jwtSettings.TokenExpiresMinutes * 60 * 60,
+                    ExpiresIn = _jwtSettings.TokenExpiresMinutes * 60,
                     RefreshToken = refreshToken,
                 };
             }
@@ -79,6 +79,18 @@ namespace UrlShortner.Application.Services
         public async Task<LoginResponseDto> GetRefreshToken(RefreshTokenDto refreshTokenDto, CancellationToken cancellationToken)
         {
             var userToken = await _userTokenRepository.GetUserTokenAsync(x => x.Token == refreshTokenDto.Token && x.RefreshToken == refreshTokenDto.RefreshToken && x.IPAddress == refreshTokenDto.IPAddress);
+
+            if (userToken is null)
+            {
+                _logger.LogWarning("Refresh token not found for token from IP {IP}", refreshTokenDto.IPAddress);
+                return null;
+            }
+
+            if (userToken.RefreshTokenExpired <= DateTime.UtcNow)
+            {
+                _logger.LogWarning("Refresh token expired for UserId {UserId} from IP {IP}", userToken.UserId, refreshTokenDto.IPAddress);
+                return null;
+            }
 
             if (userToken is not null)
             {
@@ -98,7 +110,7 @@ namespace UrlShortner.Application.Services
                 {
                     TokenType = "Bearer",
                     Token = newToken,
-                    ExpiresIn = _jwtSettings.TokenExpiresMinutes * 60 * 60,
+                    ExpiresIn = _jwtSettings.TokenExpiresMinutes * 60,
                     RefreshToken = newRefreshToken,
                 };
             }
@@ -112,10 +124,25 @@ namespace UrlShortner.Application.Services
             {
                 new Claim(ClaimTypes.Sid, user.Id.ToString()),
                 new Claim(ClaimTypes.Name, $"{user.FirstName} {user.LastName}"),
-                new Claim(ClaimTypes.Role, "Developer" ),
-                new Claim(ClaimTypes.Role, "Consultant" ),
+                // new Claim(ClaimTypes.Role, "Developer" ),
+                // new Claim(ClaimTypes.Role, "Consultant" ),
                 new Claim(ClaimTypes.Email, user.Email)
             };
+
+            // Add role claims if roles are available (user.UserRoles -> Role.Name)
+            var roleNames = user.UserRoles?
+                .Where(ur => ur.Role != null && !string.IsNullOrWhiteSpace(ur.Role.Name))
+                .Select(ur => ur.Role!.Name)
+                .Distinct()
+                .ToList();
+
+            if (roleNames != null)
+            {
+                foreach (var role in roleNames)
+                {
+                    claims.Add(new Claim(ClaimTypes.Role, role));
+                }
+            }
 
             var key = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(_jwtSettings.SecretKey));
             var signInCredentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256Signature);
@@ -143,11 +170,14 @@ namespace UrlShortner.Application.Services
             return Convert.ToHexString(hash);
         }
 
+        /*
         bool VerifyPassword(string password, string hash, byte[] salt)
         {
             var hashToCompare = Rfc2898DeriveBytes.Pbkdf2(password, salt, _jwtSettings.Iterations, hashAlgorithm, _jwtSettings.KeySize);
             return CryptographicOperations.FixedTimeEquals(hashToCompare, Convert.FromHexString(hash));
         }
+        */
+
         private string GenerateRefreshToken()
         {
             var randomNumber = new byte[64];
