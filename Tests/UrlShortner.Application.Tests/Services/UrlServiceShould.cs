@@ -48,7 +48,6 @@ namespace UrlShortner.Application.Tests.Services
         public async Task GetAllAsync_ReturnsEmpty_WhenUserIdZero()
         {
             var userId = 0;
-
             var response = await _urlService.GetAllAsync(userId, new CancellationToken());
 
             Assert.NotNull(response);

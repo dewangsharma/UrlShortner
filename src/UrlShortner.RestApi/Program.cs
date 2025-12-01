@@ -31,17 +31,15 @@ namespace RESTWebApi
 
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
+            builder.Services.Configure<HashSettings>(builder.Configuration.GetSection("HashSettings"));
             builder.Services.Configure<JwtSettings>(builder.Configuration.GetSection("JwtSettings"));
-            builder.Services.Configure<SaltKeySettings>(builder.Configuration.GetSection("SaltKeySettings"));
             builder.Services.AddSwaggerGen();
 
             builder.AddServices();
             builder.AddLogging();
             builder.AuthWithJWTBearer();
 
-            // builder.AddRepositories();
-
-            builder.Services.AddInfrastructure(builder.Configuration.GetSection("ConnectionStrings:TinyUrlDb").Value);
+            builder.Services.RegisterInfrastructure(builder.Configuration);
 
             builder.Services.AddCors(c =>
             {

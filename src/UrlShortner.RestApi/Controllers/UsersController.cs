@@ -15,12 +15,6 @@ namespace UrlShortner.RestApi.Controllers
             _userService = userService;
         }
 
-        [HttpGet]
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
-
         [HttpGet("{id}")]
         public async Task<ActionResult> Get(int id)
         {

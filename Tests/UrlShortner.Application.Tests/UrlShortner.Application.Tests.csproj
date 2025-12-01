@@ -25,6 +25,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\UrlShortner.Application\UrlShortner.Application.csproj" />
+    <ProjectReference Include="..\..\src\UrlShortner.Infrastructure\UrlShortner.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

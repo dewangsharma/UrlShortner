@@ -1,5 +1,4 @@
-﻿using System.Reflection.Metadata;
-using UrlShortner.Application.Interfaces;
+﻿using UrlShortner.Application.Interfaces;
 using UrlShortner.Application.Mappers;
 using UrlShortner.Application.Models.Users;
 using UrlShortner.Application.Repositories;
@@ -10,12 +9,14 @@ namespace UrlShortner.Application.Services
     public class UserService : IUserService
     {
         private readonly IUserRepository _userRepository;
-        private readonly IAuthService _authService;
         private readonly IUserCredentialRepository _userCredentialRepository;
-        public UserService(IUserRepository userRepository, IAuthService authService, IUserCredentialRepository userCredentialRepository)
+        private readonly IEncryptionService _encryptionService;
+        private readonly IHashingService _hashingService;
+        public UserService(IEncryptionService encryptionService, IHashingService hashingService, IUserRepository userRepository, IUserCredentialRepository userCredentialRepository)
         {
+            _encryptionService = encryptionService;
+            _hashingService = hashingService;
             _userRepository = userRepository;
-            _authService = authService;
             _userCredentialRepository = userCredentialRepository;
         }
 
@@ -41,8 +42,8 @@ namespace UrlShortner.Application.Services
             */
 
             User result = null;
-            var encryptionResponse = _authService.EncryptCredentials(userCreateDto.Email, userCreateDto.Password);
-            userCreateDto.Email = encryptionResponse.Username;
+            userCreateDto.Email = await _encryptionService.EncryptAsync(userCreateDto.Email);
+            userCreateDto.Password = _hashingService.GetHash(userCreateDto.Password);
             var userEntity = userCreateDto.ToDomain();
             
             //await _userRepository.ExecuteInTransactionAsync(async () =>
@@ -50,8 +51,9 @@ namespace UrlShortner.Application.Services
             //    result = await _userRepository.AddAsync(userEntity);
             //    var userCredDb = await _userCredentialRepository.AddAsync(userCredential);
             //});
+
             result = await _userRepository.AddAsync(userEntity);
-            var userCredential = new UserCredential() { User = result, Username = encryptionResponse.Username, Password = encryptionResponse.Password, UserId = result.Id };
+            var userCredential = new UserCredential() { User = result, Username = userCreateDto.Email, Password = userCreateDto.Password, UserId = result.Id };
 
             var userCredDb = await _userCredentialRepository.AddAsync(userCredential);
 
@@ -61,6 +63,7 @@ namespace UrlShortner.Application.Services
         public async Task<UserDto> GetByIdAsync(int id)
         {
             var user = await _userRepository.GetByIdAsync(id);
+            user.Email = await _encryptionService.DecryptAsync(user.Email);
             return user.ToDto();
         }
 
